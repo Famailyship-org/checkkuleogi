@@ -12,7 +12,6 @@ import com.Familyship.checkkuleogi.domains.book.dto.ChatGPTResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -29,47 +28,49 @@ public class BookServiceImpl implements BookService {
     @Autowired
     private BookRepository bookRepository;
 
+
     @Override
     public BookMBTIResponse createBook(BookMBTIRequest request) {
-        // ChatGPT API 호출을 위한 메시지 구성
-        String prompt = request.getSummary()
-                        +"의 줄거리를 가진 책을 좋아하는 어린이에 대한 MBTI를 적어줘\n"
-                        +"E(외향형) ~~% I(내향형) ~~%\n"
-                        +"S(감각형) ~~% N(직관형) ~~%\n"
-                        +"T(사고형) ~~% F(감정형) ~~%\n"
-                        +"J(판단형) ~~% P(인식형) ~~%\n"
-                        +"이러한 퍼센트 형식으로 알려줘.\n"
-                        +"50%는 절대 주지마!";
 
-        ChatGPTRequest chatGPTRequest = new ChatGPTRequest(model, prompt);
+        // 각 프롬프트에 대한 ChatGPT API 호출
+        String mbtiContent = callChatGPT(promptChatGPT(request, "EI")) + "\n"
+                            +callChatGPT(promptChatGPT(request, "SN")) + "\n"
+                            +callChatGPT(promptChatGPT(request, "TF")) + "\n"
+                            +callChatGPT(promptChatGPT(request, "JP")) + "\n";
 
-        // ChatGPT API 호출
-        ChatGPTResponse response = template.postForObject(apiURL, chatGPTRequest, ChatGPTResponse.class);
-
-        if (response == null || response.getChoices().isEmpty()) {
-            throw new RuntimeException("ChatGPT API 응답이 없습니다.");
-        }
-
-        // API 응답에서 MBTI 성향 추출
-        String mbtiContent = response.getChoices().get(0).getMessage().getContent();
+        System.out.println("========결과=========");
         System.out.println(mbtiContent);
 
-        // 예시: "E 30%, S 50%, T 20%, J 10%"
-        String[] mbtiValues = mbtiContent.split("%");
-        System.out.println(Arrays.toString(mbtiValues));
-        Integer mbtiE = Integer.parseInt(mbtiValues[0].trim().split(" ")[1]);
-        Integer mbtiS = Integer.parseInt(mbtiValues[2].trim().split(" ")[1]);
-        Integer mbtiT = Integer.parseInt(mbtiValues[4].trim().split(" ")[1]);
-        Integer mbtiJ = Integer.parseInt(mbtiValues[6].trim().split(" ")[1]);
-        System.out.println(mbtiE +" "+mbtiS+" "+mbtiT+" "+mbtiJ);
+        String[] mbtiArray = mbtiContent.split("\n");
+        String[] mbtiE = mbtiArray[0].substring(4).split(", ");
+        String[] mbtiI = mbtiArray[1].substring(4).split(", ");
+        String[] mbtiS = mbtiArray[2].substring(4).split(", ");
+        String[] mbtiN = mbtiArray[3].substring(4).split(", ");
+        String[] mbtiT = mbtiArray[4].substring(4).split(", ");
+        String[] mbtiF = mbtiArray[5].substring(4).split(", ");
+        String[] mbtiJ = mbtiArray[6].substring(4).split(", ");
+        String[] mbtiP= mbtiArray[7].substring(4).split(", ");
 
+
+        double percentE = ((double) mbtiE.length / (mbtiE.length + mbtiI.length)) * 100;;
+        double percentS = ((double) mbtiS.length / (mbtiS.length + mbtiN.length)) * 100;
+        double percentT = ((double) mbtiT.length / (mbtiT.length + mbtiF.length)) * 100;
+        double percentJ = ((double) mbtiJ.length / (mbtiJ.length + mbtiP.length)) * 100;
+
+        Integer mbtiEInt = (int) Math.round(percentE);
+        Integer mbtiSInt = (int) Math.round(percentS);
+        Integer mbtiTInt = (int) Math.round(percentT);
+        Integer mbtiJInt = (int) Math.round(percentJ);
+
+        //BookMBTI 저장
         BookMBTI bookMBTI = BookMBTI.builder()
-                .mbtiE(mbtiE)
-                .mbtiS(mbtiS)
-                .mbtiT(mbtiT)
-                .mbtiJ(mbtiJ)
+                .mbtiE(mbtiEInt)
+                .mbtiS(mbtiSInt)
+                .mbtiT(mbtiTInt)
+                .mbtiJ(mbtiJInt)
                 .build();
 
+        //Book 저장
         Book book = Book.builder()
                 .title(request.getTitle())
                 .author(request.getAuthor())
@@ -81,16 +82,16 @@ public class BookServiceImpl implements BookService {
 
         bookRepository.save(book);
 
-        // MBTI 성향 응답 반환
         return BookMBTIResponse.builder()
                 .title(request.getTitle())
                 .author(request.getAuthor())
                 .publisher(request.getPublisher())
                 .summary(request.getSummary())
-                .mbti(calculateMBTI(mbtiE, mbtiS, mbtiT, mbtiJ))
+                .mbti(calculateMBTI(mbtiEInt, mbtiSInt, mbtiTInt, mbtiJInt))
                 .build();
     }
 
+    //MBTI 계산 함수
     private String calculateMBTI(Integer mbtiE, Integer mbtiS, Integer mbtiT, Integer mbtiJ) {
         StringBuilder sb = new StringBuilder();
         sb.append(mbtiE>50 ? "E" : "I");
@@ -98,5 +99,50 @@ public class BookServiceImpl implements BookService {
         sb.append(mbtiT>50 ? "T" : "F");
         sb.append(mbtiJ>50 ? "J" : "P");
         return sb.toString();
+    }
+
+    // Prompt
+    private String promptChatGPT(BookMBTIRequest req, String mbti){
+        String prompt = req.getSummary()
+                        +"의 줄거리를 가진 책과 딱 맞는 키워드를 아래에서 뽑아주겠니?";
+
+        switch (mbti){
+            case "EI":
+                prompt += "(1) : " + MBTIKeywords.E_KEYWORDS + "\n(2) : " + MBTIKeywords.I_KEYWORDS + "\n";
+                break;
+            case "SN":
+                prompt += "(1) : " + MBTIKeywords.S_KEYWORDS + "\n(2) : " + MBTIKeywords.N_KEYWORDS + "\n";
+                break;
+            case "TF":
+                prompt += "(1) : " + MBTIKeywords.T_KEYWORDS + "\n(2) : " + MBTIKeywords.F_KEYWORDS + "\n";
+                break;
+            case "JP":
+                prompt += "(1) : " + MBTIKeywords.J_KEYWORDS + "\n(2) : " + MBTIKeywords.P_KEYWORDS + "\n";
+                break;
+            default:
+                prompt = "";
+                break;
+        }
+        prompt += "근데 뽑아줄 때 만약 예를들어 1성향의 키워드 '단어'를 뽑는다면 (1) 단어  이런 형태로 뽑아줘 꼭 '(1) 단어' 이 형태여야해!!! " +
+                  "그리고 (1) 해당하는 거 주르륵, (2)에 해당하는 거 주르륵 이런 형태로 출력해줘!!!!\n" +
+                  "(1) (2)에 뽑는 키워드 개수는 상관없이 그냥 어울리는 키워드 다 뽑아줘\n" +
+                  "(1) 단어1, 단어2, 단어3, ...\n" +
+                  "(2) 단어1, 단어2, 단어3, ... 꼭 이 형태로 출력해야돼\n" +
+                  "단, (1)의 단어 개수와 (2)의 단어 개수가 같아서는 안돼!!! 개수 같게 출력하지마 절대로!!!!!!!!!\n";
+        return prompt;
+    }
+
+    // ChatGPT API 호출 및 응답 처리 함수
+    private String callChatGPT(String prompt) {
+        ChatGPTRequest chatGPTRequest = new ChatGPTRequest(model, prompt);
+        ChatGPTResponse chatGPTResponse = template.postForObject(apiURL, chatGPTRequest, ChatGPTResponse.class);
+
+        // 응답 검증
+        if (chatGPTResponse == null || chatGPTResponse.getChoices().isEmpty()) {
+            throw new RuntimeException("ChatGPT API 응답이 없습니다.");
+        }
+
+        // 응답에서 결과 추출
+        return chatGPTResponse.getChoices().get(0).getMessage().getContent();
     }
 }

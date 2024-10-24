@@ -20,4 +20,5 @@ public class BookController {
     public CommonResponseEntity<BookMBTIResponse> createBook(@RequestBody BookMBTIRequest request) {
         return CommonResponseEntity.success(bookService.createBook(request));
     }
+
 }
