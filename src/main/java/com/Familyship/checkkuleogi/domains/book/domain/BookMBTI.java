@@ -30,4 +30,7 @@ public class BookMBTI extends BaseEntity {
 
     @Column(name = "mbti_j")
     private Integer mbtiJ;
+
+    @Column(name = "book_idx")
+    private Long bookIdx;
 }
