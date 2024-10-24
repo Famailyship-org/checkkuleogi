@@ -77,6 +77,7 @@ public class BookServiceImpl implements BookService {
                 .publisher(request.getPublisher())
                 .summary(request.getSummary())
                 .content(request.getContent())
+                .mbti(calculateMBTI(mbtiEInt, mbtiSInt, mbtiTInt, mbtiJInt))
                 .bookMBTI(bookMBTI)
                 .build();
 
@@ -104,9 +105,11 @@ public class BookServiceImpl implements BookService {
     // Prompt
     private String promptChatGPT(BookMBTIRequest req, String mbti){
         String prompt = req.getSummary()
-                        +"의 줄거리를 가진 책과 딱 맞는 키워드를 아래에서 뽑아주겠니?";
+                        +", 이 문장 속의 단어인 키워드를 아래에서 (1)과 (2)에서 뽑아줘\n"
+                        +"이 문장에 더 어울리는 쪽에서 키워드를 많이 추출해 주세요"
+                        +"꼭 (1)과 (2)에서 하나 이상 있어야할 필요는 없으니까 그냥 맞는 키워드만 뽑아주면 돼\n\n";
 
-        switch (mbti){
+        switch (mbti) {
             case "EI":
                 prompt += "(1) : " + MBTIKeywords.E_KEYWORDS + "\n(2) : " + MBTIKeywords.I_KEYWORDS + "\n";
                 break;
@@ -125,10 +128,10 @@ public class BookServiceImpl implements BookService {
         }
         prompt += "근데 뽑아줄 때 만약 예를들어 1성향의 키워드 '단어'를 뽑는다면 (1) 단어  이런 형태로 뽑아줘 꼭 '(1) 단어' 이 형태여야해!!! " +
                   "그리고 (1) 해당하는 거 주르륵, (2)에 해당하는 거 주르륵 이런 형태로 출력해줘!!!!\n" +
-                  "(1) (2)에 뽑는 키워드 개수는 상관없이 그냥 어울리는 키워드 다 뽑아줘\n" +
+                  "(1) (2)에 뽑는 키워드 개수는 상관없이 그냥 어울리는 키워드 다 뽑아줘\n\n" +
                   "(1) 단어1, 단어2, 단어3, ...\n" +
                   "(2) 단어1, 단어2, 단어3, ... 꼭 이 형태로 출력해야돼\n" +
-                  "단, (1)의 단어 개수와 (2)의 단어 개수가 같아서는 안돼!!! 개수 같게 출력하지마 절대로!!!!!!!!!\n";
+                  "단, (1)의 단어 개수와 (2)의 단어 개수가 다르게 해줘 둘 중 하나에 치중되면 좋겠어\n";
         return prompt;
     }
 

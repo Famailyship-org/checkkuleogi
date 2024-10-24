@@ -33,6 +33,9 @@ public class Book extends BaseEntity {
     @Column(name = "book_content")
     private String content;
 
+    @Column(name = "book_mbti")
+    private String mbti;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "book_mbti_id")
     private BookMBTI bookMBTI;
