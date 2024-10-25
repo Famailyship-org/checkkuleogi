@@ -1,8 +1,11 @@
 package com.Familyship.checkkuleogi.domains.test.dto.request;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 public class Test1RequestDTO {
-    String token;
+    String message;
+    Long idx;
 }

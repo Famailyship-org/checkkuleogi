@@ -80,10 +80,13 @@ public class JwtProvider {
     }
 
     public String getUserIdFromToken(String token) {
+
+        String actualToken = parseToken(token);
+
         return Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
-                .parseClaimsJws(token)
+                .parseClaimsJws(actualToken)
                 .getBody()
                 .getSubject();
     }
@@ -94,6 +97,10 @@ public class JwtProvider {
             return bearerToken.substring(7); // "Bearer " 이후의 토큰 부분만 반환
         }
         return null;
+    }
+
+    public String parseToken(String token) {
+        return token.replace("Bearer ", "");
     }
 
     public boolean validateToken(String token) {

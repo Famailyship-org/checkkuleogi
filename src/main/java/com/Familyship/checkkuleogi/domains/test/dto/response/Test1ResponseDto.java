@@ -8,6 +8,6 @@ import org.springframework.security.core.Authentication;
 @Getter
 @Builder
 public class Test1ResponseDto {
-    private Long id;
-    private Authentication role;
+    private Long idx;
+    private String message;
 }
