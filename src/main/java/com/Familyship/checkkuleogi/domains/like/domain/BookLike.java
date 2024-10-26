@@ -29,7 +29,7 @@ public class BookLike extends BaseEntity {
     @JoinColumn(name = "book_idx", referencedColumnName = "book_idx")
     private Book book;
 
-    @Column(name = "is_like")
+    @Column(name = "is_like", columnDefinition = "TINYINT(1)")
     private Boolean likedislike;
 
     @Builder
