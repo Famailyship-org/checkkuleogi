@@ -38,6 +38,7 @@ public class BookLikeServiceImpl implements BookLikeService{
             throw new DuplicateLikeException("이미 좋아요/싫어요를 눌렀습니다.");
         }
 
+        System.out.println(dto.getChildIdx() +" "+dto.getBookIdx());
         Child child = findChildById(dto.getChildIdx());
         Book book = findBookById(dto.getBookIdx());
 
