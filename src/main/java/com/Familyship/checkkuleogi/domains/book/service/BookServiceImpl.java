@@ -70,7 +70,7 @@ public class BookServiceImpl implements BookService {
                 .mbtiJ(mbtiJInt)
                 .build();
 
-        //Book 저장
+        //BookT 저장
         Book book = Book.builder()
                 .title(request.getTitle())
                 .author(request.getAuthor())

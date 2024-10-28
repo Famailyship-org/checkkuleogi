@@ -38,6 +38,7 @@ public class BookLikeServiceImpl implements BookLikeService{
             throw new DuplicateLikeException("이미 좋아요/싫어요를 눌렀습니다.");
         }
 
+        System.out.println(dto.getChildIdx() +" "+dto.getBookIdx());
         Child child = findChildById(dto.getChildIdx());
         Book book = findBookById(dto.getBookIdx());
 
@@ -126,7 +127,7 @@ public class BookLikeServiceImpl implements BookLikeService{
                 .orElseThrow(() -> new NotFoundException("어린이를 찾을 수 없습니다."));
     }
 
-    // Book 조회
+    // BookT 조회
     private Book findBookById(Long bookIdx) {
         return bookRepository.findById(bookIdx)
                 .orElseThrow(() -> new NotFoundException("책을 찾을 수 없습니다."));
