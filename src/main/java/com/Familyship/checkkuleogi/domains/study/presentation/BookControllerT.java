@@ -8,6 +8,7 @@ import com.Familyship.checkkuleogi.domains.study.dto.request.UpdateBookReq;
 import com.Familyship.checkkuleogi.domains.study.dto.response.FeedbackOnBookResp;
 import com.Familyship.checkkuleogi.domains.study.dto.response.ReadBookResp;
 import com.Familyship.checkkuleogi.domains.study.dto.response.RegisterBookResp;
+import com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,32 +21,32 @@ public class BookControllerT { //Presentation Layer 계층
     private final BookService bookService;
 
     @PostMapping("/admin")
-    public ResponseEntity<RegisterBookResp> registerBook(@RequestBody RegisterBookReq req) {
+    public CommonResponseEntity<RegisterBookResp> registerBook(@RequestBody RegisterBookReq req) {
         RegisterBookResp resp = bookService.registerBook(req);
-        return ResponseEntity.ok(resp);
+        return CommonResponseEntity.success(resp);
     }
 
     @PatchMapping("/admin/{bookIdx}")
-    public ResponseEntity<String> updateBook(@PathVariable Long bookIdx, @RequestBody UpdateBookReq req) {
+    public CommonResponseEntity<String> updateBook(@PathVariable Long bookIdx, @RequestBody UpdateBookReq req) {
         bookService.updateBook(bookIdx, req);
-        return ResponseEntity.ok("수정 완료");
+        return CommonResponseEntity.success("수정 완료");
     }
 
     @DeleteMapping("/admin/{bookIdx}")
-    public ResponseEntity<String> deleteBook(@PathVariable Long bookIdx) {
+    public CommonResponseEntity<String> deleteBook(@PathVariable Long bookIdx) {
         bookService.deleteBook(bookIdx);
-        return ResponseEntity.ok("삭제 완료");
+        return CommonResponseEntity.success("삭제 완료");
     }
 
     @GetMapping
-    public ResponseEntity<ReadBookResp> readBook(@RequestBody ReadBookReq req) {
+    public CommonResponseEntity<ReadBookResp> readBook(@RequestBody ReadBookReq req) {
         ReadBookResp resp = bookService.readBook(req);
-        return ResponseEntity.ok(resp);
+        return CommonResponseEntity.success(resp);
     }
 
     @PostMapping()
-    public ResponseEntity<FeedbackOnBookResp> feedbackToBook(@RequestHeader("Authorization") String token, @RequestBody FeedbackOnBookReq req) {
+    public CommonResponseEntity<FeedbackOnBookResp> feedbackToBook(@RequestHeader("Authorization") String token, @RequestBody FeedbackOnBookReq req) {
         FeedbackOnBookResp resp = bookService.feedbackOnBook(token, req);
-        return ResponseEntity.ok(resp);
+        return CommonResponseEntity.success(resp);
     }
 }
