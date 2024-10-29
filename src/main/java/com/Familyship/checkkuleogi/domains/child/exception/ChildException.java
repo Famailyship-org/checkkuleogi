@@ -1,4 +1,4 @@
-package com.Familyship.checkkuleogi.domains.study.exception;
+package com.Familyship.checkkuleogi.domains.child.exception;
 
 import com.Familyship.checkkuleogi.global.domain.exception.CustomRuntimeException;
 

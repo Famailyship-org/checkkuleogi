@@ -1,5 +1,5 @@
 package com.Familyship.checkkuleogi.domains.study.domain;
-import com.Familyship.checkkuleogi.domains.study.domain.enums.BookState;
+import com.Familyship.checkkuleogi.domains.study.domain.enums.BookStateT;
 import com.Familyship.checkkuleogi.global.domain.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -24,9 +24,9 @@ public class BookT extends BaseEntity {
 
     private String content;
 
-    private BookState state;
+    private BookStateT state;
 
-    public void update(String title, String author, String publisher, String content, BookState state) {
+    public void update(String title, String author, String publisher, String content, BookStateT state) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
@@ -35,7 +35,7 @@ public class BookT extends BaseEntity {
     }
 
     @Builder
-    private BookT(Long id, String title, String author, String publisher, String content, BookState state) {
+    private BookT(Long id, String title, String author, String publisher, String content, BookStateT state) {
         this.id = id;
         this.title = title;
         this.author = author;

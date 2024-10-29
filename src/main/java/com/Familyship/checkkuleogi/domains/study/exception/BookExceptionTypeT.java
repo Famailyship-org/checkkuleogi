@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
-public enum ChildExceptionType {
-    CHILD_NOT_FOUNT_EXCEPTION(HttpStatus.NOT_FOUND, "해당 책을 찾을 수 없습니다");
+public enum BookExceptionTypeT {
+    BOOK_NOT_FOUNT_EXCEPTION(HttpStatus.NOT_FOUND, "해당 책을 찾을 수 없습니다");
 
     private final HttpStatus status;
     private final String message;
