@@ -1,4 +1,4 @@
-package com.Familyship.checkkuleogi.domains.book.dto;
+package com.Familyship.checkkuleogi.domains.book.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

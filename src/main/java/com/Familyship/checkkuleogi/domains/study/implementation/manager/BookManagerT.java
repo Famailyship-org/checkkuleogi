@@ -4,12 +4,12 @@ import com.Familyship.checkkuleogi.domains.child.domain.Child;
 import com.Familyship.checkkuleogi.domains.like.domain.BookLike;
 import com.Familyship.checkkuleogi.domains.like.domain.repository.BookLikeRepository;
 import com.Familyship.checkkuleogi.domains.study.domain.BookT;
-import com.Familyship.checkkuleogi.domains.study.dto.request.FeedbackOnBookReq;
-import com.Familyship.checkkuleogi.domains.study.dto.request.ReadBookReq;
-import com.Familyship.checkkuleogi.domains.study.dto.request.RegisterBookReq;
-import com.Familyship.checkkuleogi.domains.study.dto.request.UpdateBookReq;
-import com.Familyship.checkkuleogi.domains.study.exception.BookException;
-import com.Familyship.checkkuleogi.domains.study.exception.BookExceptionType;
+import com.Familyship.checkkuleogi.domains.study.dto.request.FeedbackOnBookReqT;
+import com.Familyship.checkkuleogi.domains.study.dto.request.ReadBookReqT;
+import com.Familyship.checkkuleogi.domains.study.dto.request.RegisterBookReqT;
+import com.Familyship.checkkuleogi.domains.study.dto.request.UpdateBookReqT;
+import com.Familyship.checkkuleogi.domains.study.exception.BookExceptionT;
+import com.Familyship.checkkuleogi.domains.study.exception.BookExceptionTypeT;
 import com.Familyship.checkkuleogi.domains.study.repository.BookRepositoryT;
 import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -19,16 +19,16 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class BookManager { //Implement Layer 계층
+public class BookManagerT { //Implement Layer 계층
 
     private final BookRepositoryT bookRepositoryT;
     private final BookLikeRepository bookLikeRepository;
 
     //Implement Layer 계층에 존재하는 다른 협업 클래스들과 의존 가능
-    private final ChildManager childManager;
+    private final ChildManagerT childManagerT;
     private final JwtProvider jwtProvider;
 
-    public BookT registerBook(RegisterBookReq req) {
+    public BookT registerBook(RegisterBookReqT req) {
         BookT bookT = BookT.builder()
                 .title(req.title())
                 .author(req.author())
@@ -39,7 +39,7 @@ public class BookManager { //Implement Layer 계층
         return bookRepositoryT.save(bookT);
     }
 
-    public void updateBook(Long bookIdx, UpdateBookReq req) {
+    public void updateBook(Long bookIdx, UpdateBookReqT req) {
         BookT bookT = this.getBook(bookIdx);
         bookT.update(req.title(), req.author(), req.publisher(), req.content(), req.state());
     }
@@ -49,7 +49,7 @@ public class BookManager { //Implement Layer 계층
         bookRepositoryT.delete(bookT);
     }
 
-    public String readBook(ReadBookReq req) {
+    public String readBook(ReadBookReqT req) {
         return this.pagingBook(req.bookIdx(), req.startPage(), req.endPage());
     }
 
@@ -61,13 +61,13 @@ public class BookManager { //Implement Layer 계층
     public BookT getBook(Long id) {
         Optional<BookT> book = bookRepositoryT.findById(id);
         return book
-                .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUNT_EXCEPTION));
+                .orElseThrow(() -> new BookExceptionT(BookExceptionTypeT.BOOK_NOT_FOUNT_EXCEPTION));
     }
 
-    public BookLike feedbackOnBook(String token, FeedbackOnBookReq req) {
+    public BookLike feedbackOnBook(String token, FeedbackOnBookReqT req) {
         Long childIdx = Long.valueOf(jwtProvider.getUserIdFromToken(token));
 
-        Child child = childManager.getChild(childIdx);
+        Child child = childManagerT.getChild(childIdx);
         BookT bookT = this.getBook(req.bookIdx());
         boolean likeDislike = req.isLike();
 

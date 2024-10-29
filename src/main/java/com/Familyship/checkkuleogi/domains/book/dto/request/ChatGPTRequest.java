@@ -1,5 +1,6 @@
-package com.Familyship.checkkuleogi.domains.book.dto;
+package com.Familyship.checkkuleogi.domains.book.dto.request;
 
+import com.Familyship.checkkuleogi.domains.book.dto.Message;
 import lombok.Data;
 
 import java.util.ArrayList;
