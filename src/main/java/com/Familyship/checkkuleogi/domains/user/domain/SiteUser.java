@@ -42,17 +42,17 @@ public class SiteUser extends BaseEntity implements UserDetails {
     @Column(name = "user_password", nullable = false)
     private String password;
 
-    @Column(name = "user_birth")
+    @Column(name = "user_birth", nullable = false)
     private LocalDate birth;
 
-    @Column(name = "user_gender")
+    @Column(name = "user_gender", nullable = false)
     private String gender;
 
-    @Column(name = "user_email", unique = true)
+    @Column(name = "user_email", unique = true, nullable = false)
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
+    @Column(name = "user_role", nullable = false)
     private Role role;
 
 

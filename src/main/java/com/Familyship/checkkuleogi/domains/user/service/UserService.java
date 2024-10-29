@@ -17,6 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -26,11 +30,17 @@ public class UserService {
 
     @Transactional
     public CreateUserResponseDTO join(CreateUserRequestDTO createUserRequest){
+
+        LocalDate date = LocalDate.parse(createUserRequest.getBirthday(), DateTimeFormatter.ISO_LOCAL_DATE);
+
         SiteUser member = SiteUser.builder()
                 .id(createUserRequest.getId())
-                .password(passwordEncoder.encode(createUserRequest.getPassword()))  //비밀번호 인코딩
+                .password(passwordEncoder.encode(createUserRequest.getPassword()))
+                .email(createUserRequest.getEmail())
                 .role(Role.USER)
                 .name(createUserRequest.getName())
+                .birth(date)
+                .gender(createUserRequest.getGender())
                 .build();
 
         try{
@@ -51,7 +61,7 @@ public class UserService {
         SiteUser user = userRepository.findById(loginUserRequest.getId())
                 .orElseThrow(() -> new NotFoundException("가입되지 않은 E-MAIL 입니다."));
         if (!passwordEncoder.matches(loginUserRequest.getPassword(), user.getPassword())) {
-            throw new IllegalParameterException("잘못된 비밀번호입니다.");
+            throw new NotFoundException("잘못된 비밀번호입니다.");
         }
         // 로그인에 성공하면 email, roles 로 토큰 생성 후 반환
         String token = jwtProvider.createToken(user.getIdx(), user.getAuthorities());
