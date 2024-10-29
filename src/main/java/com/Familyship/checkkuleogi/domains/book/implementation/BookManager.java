@@ -2,6 +2,7 @@ package com.Familyship.checkkuleogi.domains.book.implementation;
 
 import com.Familyship.checkkuleogi.domains.book.domain.Book;
 import com.Familyship.checkkuleogi.domains.book.domain.repository.BookRepository;
+import com.Familyship.checkkuleogi.domains.book.dto.BookCachingItem;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookLikeRequest;
 import com.Familyship.checkkuleogi.domains.book.exception.BookException;
 import com.Familyship.checkkuleogi.domains.book.exception.BookExceptionType;
@@ -12,7 +13,9 @@ import com.Familyship.checkkuleogi.domains.like.domain.repository.BookLikeReposi
 import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -22,11 +25,12 @@ public class BookManager {
     private final BookRepository bookRepository;
     private final BookLikeRepository bookLikeRepository;
 
-    private final JwtProvider jwtProvider;
     private final ChildManager childManager;
+    private final BookCacheManager bookCacheManager;
 
-    public Book selectBookBy(Long idx) {
-        return this.findBookBy(idx);
+    public Book selectBookBy(Long childIdx, Long bookIdx) {
+        this.cacheRecentlyViewedBook(childIdx, bookIdx);
+        return this.findBookBy(bookIdx);
     }
 
     public void feedbackOnBook(BookLikeRequest req) {
@@ -41,8 +45,35 @@ public class BookManager {
         bookLikeRepository.save(bookLike);
     }
 
+    public void cacheRecentlyViewedBook(Long childIdx, Long bookIdx) {
+        Book book = this.findBookBy(bookIdx);
+        Boolean isLike = null;
+
+        Optional<BookLike> bookLike = bookLikeRepository.findByChild_IdxAndBook_Idx(childIdx, bookIdx);
+        if (bookLike.isPresent()) {
+            isLike = bookLike.get().getLikedislike();
+        }
+
+        BookCachingItem bookCachingItem = new BookCachingItem(
+                book.getIdx(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getSummary(),
+                book.getContent(),
+                book.getMbti(),
+                isLike
+        );
+        bookCacheManager.cacheRecentlyViewedBook(bookCachingItem, childIdx);
+    }
+
     public Book findBookBy(Long idx) {
         return bookRepository.findById(idx)
+                .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
+    }
+
+    public List<BookCachingItem> getRecentlyViewedBooks(Long childIdx) {
+        return bookCacheManager.findBookListBy(childIdx)
                 .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
     }
 }

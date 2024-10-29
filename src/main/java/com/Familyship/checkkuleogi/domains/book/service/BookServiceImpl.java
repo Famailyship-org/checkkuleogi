@@ -1,5 +1,6 @@
 package com.Familyship.checkkuleogi.domains.book.service;
 
+import com.Familyship.checkkuleogi.domains.book.dto.BookCachingItem;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookLikeRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.response.BookResponse;
 import com.Familyship.checkkuleogi.domains.book.dto.request.FeedbackOnBookRequest;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import com.Familyship.checkkuleogi.domains.book.domain.Book;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookMBTIRequest;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 @Service
@@ -31,13 +34,23 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional(readOnly = true)
-    public BookResponse selectBookBy(Long idx) {
-        Book book = bookManager.selectBookBy(idx);
+    public BookResponse selectBookBy(Long childIdx, Long bookIdx) {
+        Book book = bookManager.selectBookBy(childIdx, bookIdx);
         return bookDtoMapper.toBookResp(book);
     }
 
     @Override
     public void feedbackOnBook(BookLikeRequest req) {
         bookManager.feedbackOnBook(req);
+    }
+
+    @Override
+    public List<BookCachingItem> getRecentlyViewedBooks(Long childIdx) {
+        return bookManager.getRecentlyViewedBooks(childIdx);
+    }
+
+    @Override
+    public List<BookCachingItem> getLikedBooks(Long childIdx) {
+        return List.of();
     }
 }
