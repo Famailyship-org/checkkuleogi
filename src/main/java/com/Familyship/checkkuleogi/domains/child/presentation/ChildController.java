@@ -4,6 +4,7 @@ import com.Familyship.checkkuleogi.domains.child.dto.*;
 import com.Familyship.checkkuleogi.domains.child.service.ChildService;
 import com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity;
 import lombok.RequiredArgsConstructor;
+import org.antlr.v4.runtime.Token;
 import org.springframework.web.bind.annotation.*;
 
 import static com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity.success;
@@ -16,8 +17,14 @@ public class ChildController {
     private final ChildService childService;
 
     @PostMapping("/mbti")
-    public CommonResponseEntity<CreateChildResponseDTO> createMBTI(@RequestBody CreateChildRequestDTO createChildRequestDTO) {
-        return success(childService.createMBTI(createChildRequestDTO));
+    public CommonResponseEntity<CreateChildResponseMbtiDTO> createMBTI(@RequestBody CreateChildRequestMbtiDTO createChildRequestMBTIDTO) {
+        return success(childService.createMBTI(createChildRequestMBTIDTO));
+    }
+    @PostMapping("")
+    public CommonResponseEntity<CreateChildResponseDTO> create(
+            @RequestHeader("Authorization") String token,
+            @RequestBody CreateChildRequestDTO createChildRequestDTO) {
+        return success(childService.createChild(createChildRequestDTO, token));
     }
 
     @PostMapping("/login")
