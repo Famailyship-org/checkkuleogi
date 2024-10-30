@@ -1,6 +1,5 @@
 package com.Familyship.checkkuleogi.domains.child.service;
 
-import com.Familyship.checkkuleogi.domains.book.implementation.mapper.BookDtoMapper;
 import com.Familyship.checkkuleogi.domains.child.domain.Child;
 import com.Familyship.checkkuleogi.domains.child.domain.ChildMBTI;
 import com.Familyship.checkkuleogi.domains.child.domain.ChildMBTILog;
@@ -10,6 +9,8 @@ import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildReposito
 import com.Familyship.checkkuleogi.domains.child.dto.*;
 import com.Familyship.checkkuleogi.domains.child.implementation.ChildManager;
 import com.Familyship.checkkuleogi.domains.child.implementation.mapper.ChildDtoMapper;
+import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
+import com.Familyship.checkkuleogi.domains.user.domain.repository.UserRepository;
 import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
 import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,8 @@ public class ChildServiceImpl implements ChildService {
     private final JwtProvider jwtProvider;
     private final ChildManager childManager;
     private final ChildDtoMapper childDtoMapper;
+    private  final UserRepository userRepository;
+
 
     private static String calcMBTIResult(int length, int[] arr, int[] mbtiPercent, String mbtiResult) {
         // MBTI 설정 로직
@@ -71,15 +74,15 @@ public class ChildServiceImpl implements ChildService {
 
     @Transactional
     @Override
-    public CreateChildResponseDTO createMBTI(CreateChildRequestDTO createChildRequestDTO) {
+    public CreateChildResponseMbtiDTO createMBTI(CreateChildRequestMbtiDTO createChildRequestMBTIDTO) {
 
         // UserId가 있는지 먼저 확인 -> 추후에 토큰 처리하기 때문에 빼버림
         // DTO를 하나씩 빼서 MBTI 성향 만들기
-        Child child = isChildExisted(createChildRequestDTO.getChildName());
+        Child child = isChildExisted(createChildRequestMBTIDTO.getChildName());
 
         // 문항마다 yes, no가 있고 해당 yes이면 E - I
-        int[] temp = Arrays.stream(createChildRequestDTO.getSurveys()).toArray();
-        int[] mbtiPercent = new int[createChildRequestDTO.getSurveys().length];
+        int[] temp = Arrays.stream(createChildRequestMBTIDTO.getSurveys()).toArray();
+        int[] mbtiPercent = new int[createChildRequestMBTIDTO.getSurveys().length];
         String mbtiResult = "";
         mbtiResult = calcMBTIResult(mbtiPercent.length, temp, mbtiPercent, mbtiResult);
 
@@ -91,12 +94,21 @@ public class ChildServiceImpl implements ChildService {
         // Child 객체를 Builder를 통해 복사하고 mbti 값만 변경
         child.updateChildMbtiInfo(mbtiResult, childMBTI);
         System.out.println(child.getChildMBTI());
-        return CreateChildResponseDTO.builder().
+        return CreateChildResponseMbtiDTO.builder().
                 name(child.getName()).
                 age(child.getAge()).
                 mbti(child.getMbti()).
                 parentName(child.getParent().getName()).
                 gender(child.getGender()).build();
+    }
+
+    @Override
+    public CreateChildResponseDTO createChild(CreateChildRequestDTO createChildRequestDTO,String token) {
+        Long parent_id = Long.valueOf(jwtProvider.getUserIdFromToken(token));
+        SiteUser user = userRepository.findById(parent_id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
+        Child child = childManager.createChild(createChildRequestDTO, user);
+        return childDtoMapper.toChildResp(child);
     }
 
     private ChildMBTI saveMBTI(int[] mbtiPercent, Long childIdx) {
