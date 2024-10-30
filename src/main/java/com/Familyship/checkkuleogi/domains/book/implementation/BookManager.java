@@ -33,7 +33,7 @@ public class BookManager {
 
     public BookResponse selectBookBy(Long childIdx, Long bookIdx) {
         // 캐시에서 먼저 조회 (캐시에 없을 경우 DB에서 조회하여 캐시에 저장)
-        BookCachingItem cachedBook = bookCacheManager.findBookFromCacheOrDB(bookIdx);
+        BookCachingItem cachedBook = bookCacheManager.findBookFromCacheOrDB(childIdx, bookIdx);
 
         // 최근 본 책 목록에 해당 책 추가
         bookCacheManager.cacheRecentlyViewedBook(cachedBook, childIdx);
@@ -47,26 +47,6 @@ public class BookManager {
             throw new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION);
         }
         return recentlyViewedBooks;
-    }
-
-    public void cacheRecentlyViewedBook(Long childIdx, Long bookIdx) {
-        Book book = this.findBookBy(bookIdx);
-
-        Boolean isLike = bookLikeRepository.findByChild_IdxAndBook_Idx(childIdx, bookIdx)
-                .map(BookLike::getLikedislike)
-                .orElse(null);
-
-        BookCachingItem bookCachingItem = new BookCachingItem(
-                book.getIdx(),
-                book.getTitle(),
-                book.getAuthor(),
-                book.getPublisher(),
-                book.getSummary(),
-                book.getContent(),
-                book.getMbti(),
-                isLike
-        );
-        bookCacheManager.cacheRecentlyViewedBook(bookCachingItem, childIdx);
     }
 
     public void feedbackOnBook(BookLikeRequest req) {

@@ -6,6 +6,8 @@ import com.Familyship.checkkuleogi.domains.book.dto.BookCachingItem;
 import com.Familyship.checkkuleogi.domains.book.dto.response.BookResponse;
 import com.Familyship.checkkuleogi.domains.book.exception.BookException;
 import com.Familyship.checkkuleogi.domains.book.exception.BookExceptionType;
+import com.Familyship.checkkuleogi.domains.like.domain.BookLike;
+import com.Familyship.checkkuleogi.domains.like.domain.repository.BookLikeRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -26,25 +28,28 @@ import java.util.concurrent.TimeUnit;
 public class BookCacheManager {
 
     private static final Logger log = LoggerFactory.getLogger(BookCacheManager.class);
+
     private final RedisTemplate<String, String> redisTemplate;
     private final ObjectMapper objectMapper; // Jackson ObjectMapper
 
     private static final String BOOK_CACHE_KEY_PREFIX = "book";
+    //public static final String BOOK_LIKE_CACHE_KEY_PREFIX = "book-like:";
     private static final String RECENTLY_VIEWED_BOOKS_PREFIX = "recently-viewed-books:user";
+
     private final BookRepository bookRepository;
+    private final BookLikeRepository bookLikeRepository;
+
 
     // 책 메타데이터 캐시에서 조회
-    public BookCachingItem findBookFromCacheOrDB(Long bookIdx) {
-        String cacheKey = BOOK_CACHE_KEY_PREFIX + ":" + bookIdx;
+    public BookCachingItem findBookFromCacheOrDB(Long childIdx, Long bookIdx) {
+        String cacheBookKey = BOOK_CACHE_KEY_PREFIX + ":" + bookIdx;
 
         // 1. 글로벌 캐시에서 책 데이터를 먼저 조회
-        String cachedBookJSon = redisTemplate.opsForValue().get(cacheKey);
-        log.info(" 1 : " + bookIdx);
+        String cachedBookJSon = redisTemplate.opsForValue().get(cacheBookKey);
+        Boolean likeDislike = findLikeFromCacheOrDB(childIdx, bookIdx);
 
         if (cachedBookJSon == null) {
             // 2. 캐시에 없을 경우 DB에서 조회하여 캐시에 저장
-            log.info(" 2 : " + bookIdx);
-
             Book book = this.findBookBy(bookIdx); // DB 조회 메서드 호출
 
             BookCachingItem cachedBook = new BookCachingItem(
@@ -55,12 +60,48 @@ public class BookCacheManager {
                     book.getSummary(),
                     book.getContent(),
                     book.getMbti(),
-                    null
+                    likeDislike
             );
             cachedBookJSon = this.serializeBook(cachedBook);
-            redisTemplate.opsForValue().set(cacheKey, cachedBookJSon, Duration.ofHours(1)); // 캐시에 저장
+            redisTemplate.opsForValue().set(cacheBookKey, cachedBookJSon, Duration.ofDays(7)); // 캐시에 저장
+
+            return cachedBook;
         }
-        return this.deserializeBookCachingItem(cachedBookJSon);
+        BookCachingItem bookCachingItem = this.deserializeBookCachingItem(cachedBookJSon);
+        // `isLike` 필드가 최신 상태로 반영되도록 새로운 객체 생성
+        bookCachingItem = new BookCachingItem(
+                bookCachingItem.idx(),
+                bookCachingItem.title(),
+                bookCachingItem.author(),
+                bookCachingItem.publisher(),
+                bookCachingItem.summary(),
+                bookCachingItem.content(),
+                bookCachingItem.mbti(),
+                likeDislike
+        );
+        return bookCachingItem;
+    }
+
+    public Boolean findLikeFromCacheOrDB(Long childIdx, Long bookIdx) {
+
+        //TODO 추후, 좋아요까지 캐싱할 것인지 한다면 DB에서는 따로 관리안할지 고민필요. 좋아요는 쉽게 update되기 때문에, 현재 동기화 이슈가 있을 수 있음
+/*        String likeKey = BOOK_LIKE_CACHE_KEY_PREFIX + childIdx + ":" + bookIdx;
+
+        // 1. 글로벌 캐시에서 좋아요 데이터를 먼저 조회
+        String likeStatus = redisTemplate.opsForValue().get(likeKey);
+
+        if(likeStatus == null) {
+            // 2. 캐시에 없을 경우 DB에서 조회하여 캐시에 저장*/
+            Optional<BookLike> bookLike = bookLikeRepository.findByChildIdxAndBookIdx(childIdx, bookIdx);
+            Boolean likeDislike = null;
+
+            // 1 - 좋아요, 0 - 싫어요, null - 기록 없음
+            if(bookLike.isPresent()) likeDislike = bookLike.get().getLikedislike();
+
+            //this.cacheBookLikeStatus(childIdx, bookIdx, likeDislike);
+            return likeDislike;
+/*        }
+        return Boolean.parseBoolean(likeStatus);*/
     }
 
     public List<BookCachingItem> findBookListBy(Long childIdx) {
@@ -71,7 +112,7 @@ public class BookCacheManager {
 
         for (String bookIdx : recentBookIds) {
             // 2. 각 bookIdx에 대해 글로벌 캐시에서 메타데이터를 가져오거나, 없으면 DB 조회
-            recentBooks.add(findBookFromCacheOrDB(Long.valueOf(bookIdx)));
+            recentBooks.add(findBookFromCacheOrDB(childIdx, Long.valueOf(bookIdx)));
         }
         return recentBooks;
     }
@@ -89,8 +130,8 @@ public class BookCacheManager {
 
         // 2. 책 ID를 리스트에 추가 (중복을 피하고, 최대 10개 유지)
         redisTemplate.opsForList().leftPush(listKey, bookIdxStr);
-        redisTemplate.opsForList().trim(listKey, 0, 9); // 최대 10개 유지
-        redisTemplate.expire(listKey, 30, TimeUnit.DAYS); // TTL 설정
+        redisTemplate.opsForList().trim(listKey, 0, 10); // 최대 10개 유지
+        redisTemplate.expire(listKey, 7, TimeUnit.DAYS); // TTL 설정
 
         try {
             String cacheKey = BOOK_CACHE_KEY_PREFIX + ":" + bookCachingItem.idx();
@@ -100,6 +141,12 @@ public class BookCacheManager {
             throw new BookException(BookExceptionType.BOOK_CACHING_ITEM_CAN_NOT_DESERIALIZING);
         }
     }
+
+    //TODO 추후 like도 캐싱할 것인지에 대한 논의 필요
+/*    public void cacheBookLikeStatus(Long childIdx, Long bookIdx, Boolean isLike) {
+        String likeKey = BOOK_LIKE_CACHE_KEY_PREFIX + childIdx + ":" + bookIdx;
+        redisTemplate.opsForValue().set(likeKey, String.valueOf(isLike), Duration.ofDays(7));
+    }*/
 
     public Set<String> getRecentlyViewedBookKeys() {
         return redisTemplate.keys(RECENTLY_VIEWED_BOOKS_PREFIX + ":*:");
@@ -118,7 +165,8 @@ public class BookCacheManager {
                 cachedBook.publisher(),
                 cachedBook.summary(),
                 cachedBook.content(),
-                cachedBook.mbti());
+                cachedBook.mbti(),
+                cachedBook.isLike());
     }
 
     private BookCachingItem deserializeBookCachingItem(String json) {
