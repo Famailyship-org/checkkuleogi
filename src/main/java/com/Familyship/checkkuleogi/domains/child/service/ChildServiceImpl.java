@@ -1,5 +1,6 @@
 package com.Familyship.checkkuleogi.domains.child.service;
 
+import com.Familyship.checkkuleogi.domains.book.implementation.mapper.BookDtoMapper;
 import com.Familyship.checkkuleogi.domains.child.domain.Child;
 import com.Familyship.checkkuleogi.domains.child.domain.ChildMBTI;
 import com.Familyship.checkkuleogi.domains.child.domain.ChildMBTILog;
@@ -7,12 +8,16 @@ import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildMBTILogR
 import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildMBTIRepository;
 import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildRepository;
 import com.Familyship.checkkuleogi.domains.child.dto.*;
+import com.Familyship.checkkuleogi.domains.child.implementation.ChildManager;
+import com.Familyship.checkkuleogi.domains.child.implementation.mapper.ChildDtoMapper;
 import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
+import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,6 +25,9 @@ public class ChildServiceImpl implements ChildService {
     private final ChildMBTIRepository childMBTIRepository;
     private final ChildRepository childRepository;
     private final ChildMBTILogRepository childMBTILogRepository;
+    private final JwtProvider jwtProvider;
+    private final ChildManager childManager;
+    private final ChildDtoMapper childDtoMapper;
 
     private static String calcMBTIResult(int length, int[] arr, int[] mbtiPercent, String mbtiResult) {
         // MBTI 설정 로직
@@ -116,6 +124,13 @@ public class ChildServiceImpl implements ChildService {
 
         return ReadChildResponseDTO.builder()
                 .mbti(child.getMbti()).build();
+    }
+
+    @Override
+    public LoginChildRequestDTO loginChild(String token) {
+        Long parent_id = Long.valueOf(jwtProvider.getUserIdFromToken(token));
+        List<Long> child_id = childManager.getChildIdby(parent_id);
+        return childDtoMapper.toLoginChildReq(child_id);
     }
 
     @Transactional

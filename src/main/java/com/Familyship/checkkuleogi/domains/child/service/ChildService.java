@@ -8,6 +8,8 @@ public interface ChildService {
 
     ReadChildResponseDTO readMBTI(ReadChildRequestDTO readChildRequestDTO);
 
+    LoginChildRequestDTO loginChild(String token);
+
     void deleteMBTI(DeleteChildMBTIRequestDTO deleteChildMBTIRequestDTO);
 
     UpdateChildMBTIResponseDTO updateMBTI(UpdateChildMBTIRequestDTO updateChildMBTIRequestDTO);

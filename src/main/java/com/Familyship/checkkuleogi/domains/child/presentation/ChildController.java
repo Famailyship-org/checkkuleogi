@@ -20,6 +20,10 @@ public class ChildController {
         return success(childService.createMBTI(createChildRequestDTO));
     }
 
+    @PostMapping("/login")
+    public CommonResponseEntity<LoginChildRequestDTO> loginChild (@RequestHeader("Authorization") String token) {
+        return  success(childService.loginChild(token));
+    }
     @GetMapping("/mbti")
     public CommonResponseEntity<ReadChildResponseDTO> getMBTI(@RequestBody ReadChildRequestDTO readChildRequestDTO) {
         return success(childService.readMBTI(readChildRequestDTO));
