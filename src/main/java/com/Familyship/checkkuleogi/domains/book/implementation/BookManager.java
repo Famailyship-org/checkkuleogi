@@ -80,7 +80,7 @@ public class BookManager {
     }
 
     public void cancelFeedbackOnBook(BookLikeRequest req) {
-        BookLike bookLike = this.findBookLikeBy(req.bookIdx(), req.childIdx());
+        BookLike bookLike = this.findBookLikeBy(req.childIdx(), req.bookIdx());
         bookLikeRepository.delete(bookLike);
     }
 
