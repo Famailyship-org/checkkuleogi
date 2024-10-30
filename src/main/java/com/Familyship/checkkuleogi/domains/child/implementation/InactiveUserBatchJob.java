@@ -20,13 +20,14 @@ public class InactiveUserBatchJob {
     private final BookCacheManager bookCacheManager;
 
     @Transactional
-    @Scheduled(cron = "0 0 0 1 * *")
+    @Scheduled(cron = "0 0 0 * * MON") //매주 일요일 자정
+    //@Scheduled(fixedDelay = 1100000) // 테스트
     public void updateUserActivityStatus() {
         // 최근 본 책 목록을 가진 유저의 ID 추출
         Set<String> keys = bookCacheManager.getRecentlyViewedBookKeys();
 
         Set<Long> activeUserIds = keys.stream()
-                .map(key -> Long.parseLong(key.split(":")[1]))
+                .map(key -> Long.parseLong(key.split(":")[2]))
                 .collect(Collectors.toSet());
 
         childRepository.markUsersAsActive(activeUserIds); // 활성 유저 업데이트

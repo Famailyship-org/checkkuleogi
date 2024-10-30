@@ -11,16 +11,17 @@ import com.Familyship.checkkuleogi.domains.like.domain.repository.BookLikeReposi
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class BookCacheManager {
@@ -113,7 +114,7 @@ public class BookCacheManager {
 
         // 2. 책 ID를 리스트에 추가 (중복을 피하고, 최대 10개 유지)
         redisTemplate.opsForList().leftPush(listKey, bookIdxStr);
-        redisTemplate.opsForList().trim(listKey, 0, 10); // 최대 10개 유지
+        redisTemplate.opsForList().trim(listKey, 0, 20); // 최대 20개 유지
         redisTemplate.expire(listKey, 7, TimeUnit.DAYS); // TTL 설정
 
         try {
@@ -126,7 +127,14 @@ public class BookCacheManager {
     }
 
     public Set<String> getRecentlyViewedBookKeys() {
-        return redisTemplate.keys(RECENTLY_VIEWED_BOOKS_PREFIX + ":*:");
+        Set<String> keys = new HashSet<>();
+        String pattern = RECENTLY_VIEWED_BOOKS_PREFIX + ":*";
+        ScanOptions options = ScanOptions.scanOptions().match(pattern).count(100).build(); // 매번 100개씩 가져오기
+
+        try (Cursor<byte[]> cursor = redisTemplate.getConnectionFactory().getConnection().scan(options)) {
+            cursor.forEachRemaining(key -> keys.add(new String(key)));
+        }
+        return keys;
     }
 
     private BookCachingItem deserializeBookCachingItem(String json) {
