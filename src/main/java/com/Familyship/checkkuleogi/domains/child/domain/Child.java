@@ -36,6 +36,9 @@ public class Child extends BaseEntity {
     @Column(name = "child_mbti")
     private String mbti;
 
+    @Column(name = "is_active")
+    private boolean isActive;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id", referencedColumnName = "user_idx")
     private SiteUser parent;

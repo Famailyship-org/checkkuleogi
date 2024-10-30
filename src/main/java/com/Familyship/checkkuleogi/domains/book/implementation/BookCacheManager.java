@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -16,11 +17,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class BookCacheManager {
 
+    public static final String LIST_KEY_SUFFIX = "recently_viewed_books";
     private final RedisTemplate<String, String> redisTemplate;
     private final ObjectMapper objectMapper; // Jackson ObjectMapper
 
     public Optional<List<BookCachingItem>> findBookListBy(Long childIdx) {
-        String listKey = "child:" + childIdx + ":recently_viewed_books";
+        String listKey = "child:" + childIdx + ":" + LIST_KEY_SUFFIX;
         List<String> cachedItems = redisTemplate.opsForList().range(listKey, 0, -1);
 
         if (cachedItems == null || cachedItems.isEmpty()) {
@@ -35,7 +37,7 @@ public class BookCacheManager {
     }
 
     public void cacheRecentlyViewedBook(BookCachingItem bookCachingItem, Long childIdx) {
-        String listKey = "child:" + childIdx + ":recently_viewed_books";
+        String listKey = "child:" + childIdx + ":" + LIST_KEY_SUFFIX;
         String newBookJson;
         // DTO를 JSON으로 직렬화하여 리스트에 저장
         try {
@@ -62,5 +64,9 @@ public class BookCacheManager {
         } catch (JsonProcessingException e) {
             throw new RuntimeException("Error deserializing BookCachingItem", e);
         }
+    }
+
+    public Set<String> getRecentlyViewedBookKeys() {
+        return redisTemplate.keys("child:*:" + LIST_KEY_SUFFIX);
     }
 }
