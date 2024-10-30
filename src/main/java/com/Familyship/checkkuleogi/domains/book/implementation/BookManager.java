@@ -15,13 +15,15 @@ import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
 import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class BookManager {
@@ -47,6 +49,18 @@ public class BookManager {
             throw new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION);
         }
         return recentlyViewedBooks;
+    }
+
+    public List<BookCachingItem> getLikedBooks(Long childIdx) {
+        List<Long> likedBookIds = bookLikeRepository.findBookIdsByChildIdx(childIdx);
+        List<BookCachingItem> likedBooks = new ArrayList<>();
+
+        for (Long bookId : likedBookIds) {
+            // 책 캐시에서 메타데이터 가져오기, 없을 경우 DB 조회 후 캐시에 저장
+            BookCachingItem cachedBook = bookCacheManager.findBookFromCacheOrDB(childIdx, bookId);
+            likedBooks.add(cachedBook);
+        }
+        return likedBooks;
     }
 
     public void feedbackOnBook(BookLikeRequest req) {

@@ -67,6 +67,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookCachingItem> getLikedBooks(Long childIdx) {
+        return bookManager.getLikedBooks(childIdx);
+    }
+
+    @Override
     public void feedbackOnBook(BookLikeRequest req) {
         bookManager.feedbackOnBook(req);
     }
@@ -74,10 +79,5 @@ public class BookServiceImpl implements BookService {
     @Override
     public void cancelFeedbackOnBook(BookLikeRequest req) {
         bookManager.cancelFeedbackOnBook(req);
-    }
-
-    @Override
-    public List<BookCachingItem> getLikedBooks(Long childIdx) {
-        return List.of();
     }
 }
