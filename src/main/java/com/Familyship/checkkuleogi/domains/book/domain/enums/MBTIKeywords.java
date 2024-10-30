@@ -1,4 +1,4 @@
-package com.Familyship.checkkuleogi.domains.book.service;
+package com.Familyship.checkkuleogi.domains.book.domain.enums;
 
 //MBTI별 키워드
 public class MBTIKeywords {

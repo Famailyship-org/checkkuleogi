@@ -3,7 +3,7 @@ package com.Familyship.checkkuleogi.domains.book.implementation;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookMBTIRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.request.ChatGPTRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.response.ChatGPTResponse;
-import com.Familyship.checkkuleogi.domains.book.service.MBTIKeywords;
+import com.Familyship.checkkuleogi.domains.book.domain.enums.MBTIKeywords;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

@@ -11,15 +11,6 @@ import com.Familyship.checkkuleogi.domains.book.dto.request.FeedbackOnBookReques
 import java.util.List;
 
 public interface BookService {
-    BookResponse createBook(BookMBTIRequest request);
-    void deleteBookById(Long bookId);
     List<BookResponse> getAllBooks();
-    BookResponse updateBook(Long bookId, BookUpdateRequest request);
-
-
     BookResponse selectBookBy(Long ChildIdx, Long BookIdx);
-    void feedbackOnBook(BookLikeRequest req);
-
-    List<BookCachingItem> getRecentlyViewedBooks(Long childIdx);
-    List<BookCachingItem> getLikedBooks(Long childIdx);
 }

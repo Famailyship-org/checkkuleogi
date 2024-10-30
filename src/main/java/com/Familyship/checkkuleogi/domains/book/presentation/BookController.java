@@ -20,21 +20,22 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000") // React 앱의 URL을 허용
 public class BookController {
 
-    private final BookService bookService;
+    private final BookService bookAdminService;
+    private final BookService bookUserService;
 
     @GetMapping("")
     public CommonResponseEntity<List<BookResponse>> getAllBooks() {
-        return success(bookService.getAllBooks());
+        return success(bookAdminService.getAllBooks());
     }
 
     @PostMapping("/admin")
     public CommonResponseEntity<BookResponse> createBook(@RequestBody BookMBTIRequest req) {
-        return success(bookService.createBook(req));
+        return success(bookAdminService.createBook(req));
     }
 
     @DeleteMapping("/admin/{bookId}")
     public CommonResponseEntity<String> deleteBook(@PathVariable Long bookId) {
-        bookService.deleteBookById(bookId);
+        bookAdminService.deleteBookById(bookId);
         return success("삭제 완료");
     }
 
