@@ -7,6 +7,7 @@ import com.Familyship.checkkuleogi.domains.book.dto.request.BookMBTIRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookUpdateRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.response.BookResponse;
 import com.Familyship.checkkuleogi.domains.book.dto.request.FeedbackOnBookRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import java.util.List;
 
