@@ -1,5 +1,6 @@
 package com.Familyship.checkkuleogi.domains.like.domain.repository;
 
+import com.Familyship.checkkuleogi.domains.book.domain.Book;
 import com.Familyship.checkkuleogi.domains.child.domain.Child;
 import com.Familyship.checkkuleogi.domains.like.domain.BookLike;
 
@@ -17,6 +18,8 @@ public interface BookLikeRepository extends JpaRepository<BookLike, Long> {
     List<BookLike> findByChildAndLikedislike(Child child, boolean like);
 
     Optional<BookLike> findByChildIdxAndBookIdx(Long childIdx, Long bookIdx);
+
+    Optional<BookLike> findByBookAndChild(Book book, Child child);
 
     Optional<BookLike> findByChild_IdxAndBook_Idx(Long childIdx, Long bookIdx);
 }

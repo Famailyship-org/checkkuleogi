@@ -37,12 +37,20 @@ public class BookManager {
         Book book = this.findBookBy(req.bookIdx());
         Child child = childManager.findChildBy(req.childIdx());
 
-        BookLike bookLike = BookLike.builder()
-                .child(child)
-                .book(book)
-                .likedislike(req.isLike())
-                .build();
-        bookLikeRepository.save(bookLike);
+        Optional<BookLike> existingLike = bookLikeRepository.findByBookAndChild(book, child);
+
+        if (existingLike.isPresent()) { //업데이트
+            BookLike bookLike = existingLike.get();
+            bookLike.updateLikedislike(req.isLike());
+            bookLikeRepository.save(bookLike);
+        } else {  //생성
+            BookLike bookLike = BookLike.builder()
+                    .child(child)
+                    .book(book)
+                    .likedislike(req.isLike())
+                    .build();
+            bookLikeRepository.save(bookLike);
+        }
     }
 
     public void cacheRecentlyViewedBook(Long childIdx, Long bookIdx) {
