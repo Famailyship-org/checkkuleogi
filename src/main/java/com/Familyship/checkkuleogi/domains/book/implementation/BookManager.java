@@ -10,6 +10,7 @@ import com.Familyship.checkkuleogi.domains.child.domain.Child;
 import com.Familyship.checkkuleogi.domains.child.implementation.ChildManager;
 import com.Familyship.checkkuleogi.domains.like.domain.BookLike;
 import com.Familyship.checkkuleogi.domains.like.domain.repository.BookLikeRepository;
+import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
 import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -33,6 +34,31 @@ public class BookManager {
         return this.findBookBy(bookIdx);
     }
 
+    public List<BookCachingItem> getRecentlyViewedBooks(Long childIdx) {
+        return bookCacheManager.findBookListBy(childIdx)
+                .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
+    }
+
+    public void cacheRecentlyViewedBook(Long childIdx, Long bookIdx) {
+        Book book = this.findBookBy(bookIdx);
+
+        Boolean isLike = bookLikeRepository.findByChild_IdxAndBook_Idx(childIdx, bookIdx)
+                .map(BookLike::getLikedislike)
+                .orElse(null);
+
+        BookCachingItem bookCachingItem = new BookCachingItem(
+                book.getIdx(),
+                book.getTitle(),
+                book.getAuthor(),
+                book.getPublisher(),
+                book.getSummary(),
+                book.getContent(),
+                book.getMbti(),
+                isLike
+        );
+        bookCacheManager.cacheRecentlyViewedBook(bookCachingItem, childIdx);
+    }
+
     public void feedbackOnBook(BookLikeRequest req) {
         Book book = this.findBookBy(req.bookIdx());
         Child child = childManager.findChildBy(req.childIdx());
@@ -53,35 +79,18 @@ public class BookManager {
         }
     }
 
-    public void cacheRecentlyViewedBook(Long childIdx, Long bookIdx) {
-        Book book = this.findBookBy(bookIdx);
-        Boolean isLike = null;
-
-        Optional<BookLike> bookLike = bookLikeRepository.findByChild_IdxAndBook_Idx(childIdx, bookIdx);
-        if (bookLike.isPresent()) {
-            isLike = bookLike.get().getLikedislike();
-        }
-
-        BookCachingItem bookCachingItem = new BookCachingItem(
-                book.getIdx(),
-                book.getTitle(),
-                book.getAuthor(),
-                book.getPublisher(),
-                book.getSummary(),
-                book.getContent(),
-                book.getMbti(),
-                isLike
-        );
-        bookCacheManager.cacheRecentlyViewedBook(bookCachingItem, childIdx);
+    public void cancelFeedbackOnBook(BookLikeRequest req) {
+        BookLike bookLike = this.findBookLikeBy(req.bookIdx(), req.childIdx());
+        bookLikeRepository.delete(bookLike);
     }
 
-    public Book findBookBy(Long idx) {
-        return bookRepository.findById(idx)
+    public Book findBookBy(Long bookIdx) {
+        return bookRepository.findById(bookIdx)
                 .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
     }
 
-    public List<BookCachingItem> getRecentlyViewedBooks(Long childIdx) {
-        return bookCacheManager.findBookListBy(childIdx)
-                .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
+    public BookLike findBookLikeBy(Long childIdx, Long bookIdx) {
+        return bookLikeRepository.findByChildIdxAndBookIdx(childIdx, bookIdx)
+                .orElseThrow(() -> new BookException(BookExceptionType.BOOK_LIKE_NOT_FOUND_EXCEPTION));
     }
 }

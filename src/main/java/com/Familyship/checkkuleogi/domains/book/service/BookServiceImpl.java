@@ -62,13 +62,18 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public List<BookCachingItem> getRecentlyViewedBooks(Long childIdx) {
+        return bookManager.getRecentlyViewedBooks(childIdx);
+    }
+
+    @Override
     public void feedbackOnBook(BookLikeRequest req) {
         bookManager.feedbackOnBook(req);
     }
 
     @Override
-    public List<BookCachingItem> getRecentlyViewedBooks(Long childIdx) {
-        return bookManager.getRecentlyViewedBooks(childIdx);
+    public void cancelFeedbackOnBook(BookLikeRequest req) {
+        bookManager.cancelFeedbackOnBook(req);
     }
 
     @Override

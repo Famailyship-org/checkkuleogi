@@ -19,6 +19,7 @@ public interface BookService {
 
     BookResponse selectBookBy(Long ChildIdx, Long BookIdx);
     void feedbackOnBook(BookLikeRequest req);
+    void cancelFeedbackOnBook(BookLikeRequest req);
 
     List<BookCachingItem> getRecentlyViewedBooks(Long childIdx);
     List<BookCachingItem> getLikedBooks(Long childIdx);
