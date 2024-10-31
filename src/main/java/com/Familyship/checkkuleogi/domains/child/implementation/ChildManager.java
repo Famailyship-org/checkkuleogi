@@ -1,10 +1,9 @@
 package com.Familyship.checkkuleogi.domains.child.implementation;
 
-import com.Familyship.checkkuleogi.domains.book.domain.Book;
 import com.Familyship.checkkuleogi.domains.child.domain.Child;
 import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildRepository;
-import com.Familyship.checkkuleogi.domains.child.dto.CreateChildRequestDTO;
-import com.Familyship.checkkuleogi.domains.child.dto.CreateChildResponseDTO;
+import com.Familyship.checkkuleogi.domains.child.dto.request.CreateChildRequestDTO;
+import com.Familyship.checkkuleogi.domains.child.dto.response.ChildResponse;
 import com.Familyship.checkkuleogi.domains.child.exception.ChildException;
 import com.Familyship.checkkuleogi.domains.child.exception.ChildExceptionType;
 import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
@@ -45,6 +44,20 @@ public class ChildManager {
 
         // 데이터베이스에 저장하고 Child 객체 반환
         return childRepository.save(child);
+    }
+
+    // childIdx로 Child 정보를 조회
+    public ChildResponse getChildById(Long childIdx) {
+        Child child = childRepository.findById(childIdx)
+                .orElseThrow(() -> new ChildException(ChildExceptionType.CHILD_NOT_FOUND_EXCEPTION));
+
+        return new ChildResponse(
+                child.getIdx(),
+                child.getName(),
+                child.getAge(),
+                child.getGender(),
+                child.getMbti()
+        );
     }
 
 }

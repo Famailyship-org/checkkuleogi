@@ -1,10 +1,10 @@
 package com.Familyship.checkkuleogi.domains.child.presentation;
 
-import com.Familyship.checkkuleogi.domains.child.dto.*;
+import com.Familyship.checkkuleogi.domains.child.dto.request.*;
+import com.Familyship.checkkuleogi.domains.child.dto.response.*;
 import com.Familyship.checkkuleogi.domains.child.service.ChildService;
 import com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity;
 import lombok.RequiredArgsConstructor;
-import org.antlr.v4.runtime.Token;
 import org.springframework.web.bind.annotation.*;
 
 import static com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity.success;
@@ -45,5 +45,10 @@ public class ChildController {
     @PatchMapping("/mbti")
     public CommonResponseEntity<UpdateChildMBTIResponseDTO> updateMBTI(@RequestBody UpdateChildMBTIRequestDTO updateChildMBTIRequestDTO) {
         return success(childService.updateMBTI(updateChildMBTIRequestDTO));
+    }
+
+    @GetMapping("/{childIdx}")
+    public CommonResponseEntity<ChildResponse> getChildById(@PathVariable Long childIdx) {
+        return success(childService.getChildById(childIdx));
     }
 }

@@ -6,7 +6,8 @@ import com.Familyship.checkkuleogi.domains.child.domain.ChildMBTILog;
 import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildMBTILogRepository;
 import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildMBTIRepository;
 import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildRepository;
-import com.Familyship.checkkuleogi.domains.child.dto.*;
+import com.Familyship.checkkuleogi.domains.child.dto.request.*;
+import com.Familyship.checkkuleogi.domains.child.dto.response.*;
 import com.Familyship.checkkuleogi.domains.child.implementation.ChildManager;
 import com.Familyship.checkkuleogi.domains.child.implementation.mapper.ChildDtoMapper;
 import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
@@ -103,7 +104,7 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
-    public CreateChildResponseDTO createChild(CreateChildRequestDTO createChildRequestDTO,String token) {
+    public CreateChildResponseDTO createChild(CreateChildRequestDTO createChildRequestDTO, String token) {
         Long parent_id = Long.valueOf(jwtProvider.getUserIdFromToken(token));
         SiteUser user = userRepository.findById(parent_id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 존재하지 않습니다."));
@@ -189,5 +190,11 @@ public class ChildServiceImpl implements ChildService {
         ChildMBTI updateChildMBTI = saveMBTI(mbtiPercent, child.getIdx());
         child.updateChildMbtiInfo(mbtiResult, updateChildMBTI);
         return UpdateChildMBTIResponseDTO.builder().childName(child.getName()).mbti(mbtiResult).build();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public ChildResponse getChildById(Long childIdx) {
+        return childManager.getChildById(childIdx);
     }
 }
