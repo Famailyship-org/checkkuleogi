@@ -37,42 +37,43 @@ public class ChildServiceImpl implements ChildService {
         // MBTI 설정 로직
         for (int i = 0; i < length; i++) {
             if (i == 0) { // 1번 문항 - E & I
-                if (arr[i] == 1) { // yes - E 성향
-                    mbtiPercent[i] = 50;
+                if (arr[i] > 0) { // yes - E 성향
+                    mbtiPercent[i] = 100-Long.valueOf(Math.round((Math.abs(arr[i]) / 3.0) * 100)).intValue(); // E 성향 비율 계산
                     mbtiResult += "E";
-                } else if (arr[i] == 2) { // no - I 성향
-                    mbtiPercent[i] = -50;
+                } else if (arr[i] < 0) { // no - I 성향
+                    mbtiPercent[i] = Long.valueOf(Math.round((Math.abs(arr[i]) / 3.0) * 100)).intValue(); // I 성향 비율 계산
                     mbtiResult += "I";
                 }
+
+
             } else if (i == 1) { // 2번 문항 - S & N
-                if (arr[i] == 1) { // yes - S 성향
-                    mbtiPercent[i] = 50;
+                if (arr[i] > 0) { // yes - S 성향
+                    mbtiPercent[i] = 100-Long.valueOf(Math.round((Math.abs(arr[i]) / 3.0) * 100)).intValue();
                     mbtiResult += "S";
-                } else if (arr[i] == 2) { // no - N 성향
-                    mbtiPercent[i] = -50;
+                } else if (arr[i] < 0) { // no - N 성향
+                    mbtiPercent[i] = Long.valueOf(Math.round((Math.abs(arr[i]) / 3.0) * 100)).intValue();
                     mbtiResult += "N";
                 }
             } else if (i == 2) { // 3번 문항 - T & F
-                if (arr[i] == 1) { // yes - T 성향
-                    mbtiPercent[i] = 50;
+                if (arr[i] > 0) { // yes - T 성향
+                    mbtiPercent[i] = 100-Long.valueOf(Math.round((Math.abs(arr[i]) / 3.0) * 100)).intValue();
                     mbtiResult += "T";
-                } else if (arr[i] == 2) { // no - F성향
-                    mbtiPercent[i] = -50;
+                } else if (arr[i] < 0) { // no - F성향
+                    mbtiPercent[i] = Long.valueOf(Math.round((Math.abs(arr[i]) / 3.0) * 100)).intValue();
                     mbtiResult += "F";
                 }
             } else if (i == 3) { // 4번 문항 - J & P
-                if (arr[i] == 1) { // yes - J 성향
-                    mbtiPercent[i] = 50;
+                if (arr[i] > 0) { // yes - J 성향
+                    mbtiPercent[i] = 100-Long.valueOf(Math.round((Math.abs(arr[i]) / 3.0) * 100)).intValue();
                     mbtiResult += "J";
-                } else if (arr[i] == 2) { // no - P 성향
-                    mbtiPercent[i] = -50;
+                } else if (arr[i] < 0) { // no - P 성향
+                    mbtiPercent[i] = Long.valueOf(Math.round((Math.abs(arr[i]) / 3.0) * 100)).intValue();
                     mbtiResult += "P";
                 }
             }
         }
         return mbtiResult;
     }
-
     @Transactional
     @Override
     public CreateChildResponseMbtiDTO createMBTI(CreateChildRequestMbtiDTO createChildRequestMBTIDTO) {
