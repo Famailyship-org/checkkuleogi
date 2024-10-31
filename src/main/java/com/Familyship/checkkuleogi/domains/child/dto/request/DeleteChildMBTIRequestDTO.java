@@ -4,5 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class DeleteChildMBTIRequestDTO {
-    private String childName;
+    private Long childidx;
 }
