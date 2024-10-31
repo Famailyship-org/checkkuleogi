@@ -37,7 +37,7 @@ public class Child extends BaseEntity {
     private String mbti;
 
     @Column(name = "is_active")
-    private Boolean isActive;
+    private boolean isActive;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id", referencedColumnName = "user_idx")

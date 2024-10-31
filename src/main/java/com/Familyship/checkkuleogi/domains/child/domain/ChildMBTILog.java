@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Builder
 @Entity
 @Getter
@@ -36,4 +39,12 @@ public class ChildMBTILog extends BaseEntity {
 
     @Column(name = "is_survey_result")
     private Boolean isSurveyResult;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+    @Column(name = "is_deleted_at")
+    private LocalDateTime isDeletedAt;
+
+
 }
