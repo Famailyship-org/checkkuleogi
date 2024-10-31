@@ -1,6 +1,7 @@
 package com.Familyship.checkkuleogi.domains.child.service;
 
-import com.Familyship.checkkuleogi.domains.child.dto.*;
+import com.Familyship.checkkuleogi.domains.child.dto.request.*;
+import com.Familyship.checkkuleogi.domains.child.dto.response.*;
 
 public interface ChildService {
 
@@ -15,4 +16,6 @@ public interface ChildService {
     void deleteMBTI(DeleteChildMBTIRequestDTO deleteChildMBTIRequestDTO);
 
     UpdateChildMBTIResponseDTO updateMBTI(UpdateChildMBTIRequestDTO updateChildMBTIRequestDTO);
+
+    ChildResponse getChildById(Long childIdx);
 }

@@ -1,5 +1,4 @@
-package com.Familyship.checkkuleogi.domains.child.dto;
-import lombok.Getter;
+package com.Familyship.checkkuleogi.domains.child.dto.request;
 
 import java.util.List;
 

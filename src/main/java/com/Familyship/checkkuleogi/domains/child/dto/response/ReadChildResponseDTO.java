@@ -1,4 +1,4 @@
-package com.Familyship.checkkuleogi.domains.child.dto;
+package com.Familyship.checkkuleogi.domains.child.dto.response;
 
 import lombok.Builder;
 import lombok.Getter;

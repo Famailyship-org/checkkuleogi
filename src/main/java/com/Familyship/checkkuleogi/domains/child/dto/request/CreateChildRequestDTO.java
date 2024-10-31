@@ -1,6 +1,5 @@
-package com.Familyship.checkkuleogi.domains.child.dto;
+package com.Familyship.checkkuleogi.domains.child.dto.request;
 
-import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
 import lombok.Getter;
 
 import java.time.LocalDate;
