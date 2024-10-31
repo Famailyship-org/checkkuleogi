@@ -22,11 +22,6 @@ public class BookController {
 
     private final BookService bookService;
 
-    @GetMapping("")
-    public CommonResponseEntity<List<BookResponse>> getAllBooks() {
-        return success(bookService.getAllBooks());
-    }
-
     @PostMapping("/admin")
     public CommonResponseEntity<BookResponse> createBook(@RequestBody BookMBTIRequest req) {
         return success(bookService.createBook(req));
@@ -43,6 +38,16 @@ public class BookController {
         return success(bookService.updateBook(bookId, request));
     }
 
+    @GetMapping("")
+    public CommonResponseEntity<List<BookResponse>> getAllBooks() {
+        return success(bookService.getAllBooks());
+    }
+
+    @GetMapping("/{childIdx}/recent")
+    public CommonResponseEntity<List<BookCachingItem>> getRecentlyViewedBooks(@PathVariable Long childIdx) {
+        return success(bookService.getRecentlyViewedBooks(childIdx));
+    }
+
     @GetMapping("/{bookIdx}")
     public CommonResponseEntity<BookResponse> selectBook(@RequestParam("kidIdx") Long childIdx, @PathVariable Long bookIdx) {
         return success(bookService.selectBookBy(childIdx, bookIdx));
@@ -54,9 +59,10 @@ public class BookController {
         return success("피드백 반영 완료");
     }
 
-    @GetMapping("/{childIdx}/recent")
-    public CommonResponseEntity<List<BookCachingItem>> getRecentlyViewedBooks(@PathVariable Long childIdx) {
-        return success(bookService.getRecentlyViewedBooks(childIdx));
+    @DeleteMapping("/like")
+    public CommonResponseEntity<String> cancelFeedbackOnBook(@RequestBody BookLikeRequest req) {
+        bookService.cancelFeedbackOnBook(req);
+        return success("피드백 삭제 완료");
     }
 
     @GetMapping("/{childIdx}/like")

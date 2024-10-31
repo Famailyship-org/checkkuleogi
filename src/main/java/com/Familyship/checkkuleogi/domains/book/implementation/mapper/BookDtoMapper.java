@@ -13,6 +13,7 @@ public class BookDtoMapper {
                 book.getPublisher(),
                 book.getSummary(),
                 book.getContent(),
-                book.getMbti());
+                book.getMbti(),
+                null);
     }
 }

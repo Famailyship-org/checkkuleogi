@@ -7,6 +7,7 @@ import com.Familyship.checkkuleogi.domains.book.dto.response.BookResponse;
 import com.Familyship.checkkuleogi.domains.book.implementation.BookManager;
 import com.Familyship.checkkuleogi.domains.book.implementation.mapper.BookDtoMapper;
 import com.Familyship.checkkuleogi.domains.book.implementation.BookAdminManager;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.Familyship.checkkuleogi.domains.book.domain.Book;
@@ -57,13 +58,7 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional(readOnly = true)
     public BookResponse selectBookBy(Long childIdx, Long bookIdx) {
-        Book book = bookManager.selectBookBy(childIdx, bookIdx);
-        return bookDtoMapper.toBookResp(book);
-    }
-
-    @Override
-    public void feedbackOnBook(BookLikeRequest req) {
-        bookManager.feedbackOnBook(req);
+        return bookManager.selectBookBy(childIdx, bookIdx);
     }
 
     @Override
@@ -73,6 +68,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public List<BookCachingItem> getLikedBooks(Long childIdx) {
-        return List.of();
+        return bookManager.getLikedBooks(childIdx);
+    }
+
+    @Override
+    public void feedbackOnBook(BookLikeRequest req) {
+        bookManager.feedbackOnBook(req);
+    }
+
+    @Override
+    public void cancelFeedbackOnBook(BookLikeRequest req) {
+        bookManager.cancelFeedbackOnBook(req);
     }
 }
