@@ -27,10 +27,9 @@ public class BookController {
         return success(bookService.createBook(req));
     }
 
-    @DeleteMapping("/admin/{bookId}")
-    public CommonResponseEntity<String> deleteBook(@PathVariable Long bookId) {
-        bookService.deleteBookById(bookId);
-        return success("삭제 완료");
+    @GetMapping("")
+    public CommonResponseEntity<List<BookResponse>> getAllBooks() {
+        return success(bookService.getAllBooks());
     }
 
     @PutMapping("/admin/{bookId}")
@@ -38,19 +37,20 @@ public class BookController {
         return success(bookService.updateBook(bookId, request));
     }
 
-    @GetMapping("")
-    public CommonResponseEntity<List<BookResponse>> getAllBooks() {
-        return success(bookService.getAllBooks());
+    @DeleteMapping("/admin/{bookId}")
+    public CommonResponseEntity<String> deleteBook(@PathVariable Long bookId) {
+        bookService.deleteBookById(bookId);
+        return success("삭제 완료");
+    }
+
+    @GetMapping("/{bookIdx}")
+    public CommonResponseEntity<BookCachingItem> getBook(@RequestParam("kidIdx") Long childIdx, @PathVariable Long bookIdx) {
+        return success(bookService.getBook(childIdx, bookIdx));
     }
 
     @GetMapping("/{childIdx}/recent")
     public CommonResponseEntity<List<BookCachingItem>> getRecentlyViewedBooks(@PathVariable Long childIdx) {
         return success(bookService.getRecentlyViewedBooks(childIdx));
-    }
-
-    @GetMapping("/{bookIdx}")
-    public CommonResponseEntity<BookResponse> selectBook(@RequestParam("kidIdx") Long childIdx, @PathVariable Long bookIdx) {
-        return success(bookService.selectBookBy(childIdx, bookIdx));
     }
 
     @PostMapping("/like")
