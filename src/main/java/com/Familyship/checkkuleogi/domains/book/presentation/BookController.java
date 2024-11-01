@@ -53,6 +53,11 @@ public class BookController {
         return success(bookService.getRecentlyViewedBooks(childIdx));
     }
 
+    @GetMapping("/{childIdx}/like")
+    public CommonResponseEntity<List<BookCachingItem>> getLikedBooks(@PathVariable Long childIdx) {
+        return success(bookService.getLikedBooks(childIdx));
+    }
+
     @GetMapping("/{childIdx}/recommend")
     public CommonResponseEntity<List<BookCachingItem>> getRecommendBooks(@PathVariable Long childIdx) {
         return success(bookService.getRecommendBooks(childIdx));
