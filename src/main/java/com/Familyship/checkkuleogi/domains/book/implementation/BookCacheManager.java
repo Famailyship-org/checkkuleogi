@@ -3,7 +3,6 @@ package com.Familyship.checkkuleogi.domains.book.implementation;
 import com.Familyship.checkkuleogi.domains.book.domain.Book;
 import com.Familyship.checkkuleogi.domains.book.domain.repository.BookRepository;
 import com.Familyship.checkkuleogi.domains.book.dto.BookCachingItem;
-import com.Familyship.checkkuleogi.domains.book.dto.response.BookResponse;
 import com.Familyship.checkkuleogi.domains.book.exception.BookException;
 import com.Familyship.checkkuleogi.domains.book.exception.BookExceptionType;
 import com.Familyship.checkkuleogi.domains.like.domain.BookLike;
@@ -153,8 +152,8 @@ public class BookCacheManager {
         }
     }
 
-    public BookResponse convertToBookResp(BookCachingItem cachedBook) {
-        return new BookResponse(
+    public BookCachingItem convertToBookCachingItem(BookCachingItem cachedBook) {
+        return new BookCachingItem(
                 cachedBook.idx(),
                 cachedBook.title(),
                 cachedBook.author(),
