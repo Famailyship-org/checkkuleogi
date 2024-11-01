@@ -51,4 +51,9 @@ public class ChildController {
     public CommonResponseEntity<ChildResponse> getChildById(@PathVariable Long childIdx) {
         return success(childService.getChildById(childIdx));
     }
+
+    @GetMapping("mbti/logs/{childIdx}")
+    public CommonResponseEntity<GetChildMbtiLogsResponseDTO> getMbtiLogs(@PathVariable Long childIdx) {
+        return success(childService.getMbtiLogs(childIdx));
+    }
 }
