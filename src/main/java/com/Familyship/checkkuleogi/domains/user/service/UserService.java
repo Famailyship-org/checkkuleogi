@@ -3,10 +3,13 @@ package com.Familyship.checkkuleogi.domains.user.service;
 import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
 import com.Familyship.checkkuleogi.domains.user.domain.enums.Role;
 import com.Familyship.checkkuleogi.domains.user.domain.repository.UserRepository;
+import com.Familyship.checkkuleogi.domains.user.dto.UserDto;
 import com.Familyship.checkkuleogi.domains.user.dto.request.CreateUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.request.LoginUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.CreateUserResponseDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.LoginUserResponseDTO;
+import com.Familyship.checkkuleogi.domains.user.exception.UserException;
+import com.Familyship.checkkuleogi.domains.user.exception.UserExceptionType;
 import com.Familyship.checkkuleogi.global.domain.exception.IllegalParameterException;
 import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
 import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
@@ -19,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 
 @RequiredArgsConstructor
 @Service
@@ -69,6 +71,13 @@ public class UserService {
         return LoginUserResponseDTO.builder()
                 .token(token)
                 .build();
+    }
+
+    @Transactional(readOnly = true)
+    public UserDto findUserById(Long id) {
+        SiteUser user = userRepository.findById(id)
+                .orElseThrow(() -> new UserException(UserExceptionType.USER_NOT_FOUND_EXCEPTION)); // 사용자 찾기
+        return new UserDto(user.getIdx(), user.getName(), user.getEmail(), user.getRole()); // DTO 생성
     }
 
 }

@@ -1,5 +1,6 @@
 package com.Familyship.checkkuleogi.domains.user.presentation;
 
+import com.Familyship.checkkuleogi.domains.user.dto.UserDto;
 import com.Familyship.checkkuleogi.domains.user.dto.request.CreateUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.request.LoginUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.CreateUserResponseDTO;
@@ -27,6 +28,11 @@ public class UserController {
     @PostMapping("/login")
     public CommonResponseEntity<LoginUserResponseDTO> login(@RequestBody LoginUserRequestDTO user) {
         return success(userService.login(user));
+    }
+
+    @GetMapping("/{id}")
+    public CommonResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+        return success(userService.findUserById(id)); // 성공 응답 반환
     }
 
 }
