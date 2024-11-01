@@ -18,4 +18,6 @@ public interface ChildService {
     UpdateChildMBTIResponseDTO updateMBTI(UpdateChildMBTIRequestDTO updateChildMBTIRequestDTO);
 
     ChildResponse getChildById(Long childIdx);
+
+    GetChildMbtiLogsResponseDTO getMbtiLogs(Long childIdx);
 }

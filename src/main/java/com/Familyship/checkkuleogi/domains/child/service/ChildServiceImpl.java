@@ -9,7 +9,10 @@ import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildReposito
 import com.Familyship.checkkuleogi.domains.child.dto.request.*;
 import com.Familyship.checkkuleogi.domains.child.dto.response.*;
 import com.Familyship.checkkuleogi.domains.child.implementation.ChildManager;
+
+import com.Familyship.checkkuleogi.domains.child.implementation.manager.ChildMbtiManager;
 import com.Familyship.checkkuleogi.domains.child.implementation.mapper.ChildDtoMapper;
+import com.Familyship.checkkuleogi.domains.child.implementation.mapper.ChildMbtiDtoMapper;
 import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
 import com.Familyship.checkkuleogi.domains.user.domain.repository.UserRepository;
 import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
@@ -30,8 +33,9 @@ public class ChildServiceImpl implements ChildService {
     private final JwtProvider jwtProvider;
     private final ChildManager childManager;
     private final ChildDtoMapper childDtoMapper;
-    private  final UserRepository userRepository;
-
+    private final UserRepository userRepository;
+    private final ChildMbtiManager childMbtiManager;
+    private final ChildMbtiDtoMapper childMbtiDtoMapper;
 
     private static String calcMBTIResult(int length, int[] arr, int[] mbtiPercent, String mbtiResult) {
         // MBTI 설정 로직
@@ -197,5 +201,11 @@ public class ChildServiceImpl implements ChildService {
     @Transactional(readOnly = true)
     public ChildResponse getChildById(Long childIdx) {
         return childManager.getChildById(childIdx);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public GetChildMbtiLogsResponseDTO getMbtiLogs(Long childIdx) {
+        return childMbtiManager.getLatestMbtiValues(childIdx);
     }
 }
