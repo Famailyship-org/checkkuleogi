@@ -46,6 +46,8 @@ public class BookAdminManager {
     }
 
     public void deleteBook(Long bookId) {
+        //캐시에 삭제 반영
+        bookCacheManager.deleteBookInCache(bookId);
         bookRepository.deleteById(bookId);
     }
 

@@ -58,6 +58,11 @@ public class BookCacheManager {
         return bookCachingItem;
     }
 
+    public void deleteBookInCache(Long bookId) {
+        String cacheBookKey = BOOK_CACHE_KEY_PREFIX + ":" + bookId;
+        redisTemplate.delete(cacheBookKey);
+    }
+
     public void updateBookInCache(Book book) {
         String cacheBookKey = BOOK_CACHE_KEY_PREFIX + ":" + book.getIdx();
         try {

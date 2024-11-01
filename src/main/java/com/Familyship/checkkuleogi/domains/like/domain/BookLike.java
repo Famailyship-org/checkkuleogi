@@ -25,7 +25,7 @@ public class BookLike extends BaseEntity {
     @JoinColumn(name = "child_idx", referencedColumnName = "child_idx")
     private Child child;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "book_idx", referencedColumnName = "book_idx")
     private Book book;
 
