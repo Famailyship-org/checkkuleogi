@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -125,6 +126,7 @@ public class ChildServiceImpl implements ChildService {
                 mbtiJ(mbtiPercent[3])
                 .build();
         ChildMBTILog childMBTILog = ChildMBTILog.builder().
+                isDeleted(false).
                 mbtiE(mbtiPercent[0]).
                 mbtiS(mbtiPercent[1]).
                 mbtiT(mbtiPercent[2]).
@@ -154,20 +156,30 @@ public class ChildServiceImpl implements ChildService {
     @Transactional
     @Override
     public void deleteMBTI(DeleteChildMBTIRequestDTO deleteChildMBTIRequestDTO) {
-        Child child = isChildExisted(deleteChildMBTIRequestDTO.getChildName());
+        // 1. Child 엔티티 조회 및 예외 처리
+        Child child = childRepository.findByIdx(deleteChildMBTIRequestDTO.getChildidx())
+                .orElseThrow(() -> new NotFoundException("아이가 등록되어 있지 않습니다"));
+
+        // 2. Child 엔티티에 연관된 ChildMBTI 조회 및 예외 처리
         ChildMBTI childMBTI = childMBTIRepository.findByIdx(child.getChildMBTI().getIdx())
                 .orElseThrow(() -> new NotFoundException("저장된 MBTI가 없습니다"));
-        System.out.println(childMBTI);
-        // child 엔티티 mbti 삭제
+
+        // 3. Child 엔티티의 MBTI 정보 초기화
         child.updateChildMbtiInfo(null, null);
-        // MBTI 로우 테이블 삭제
+
+        // 4. ChildMBTI 엔티티 삭제
         childMBTIRepository.delete(childMBTI);
+
+        // 5. ChildMBTILog 엔티티 논리 삭제
+        LocalDateTime now = LocalDateTime.now();
+        childMBTILogRepository.bulkDeleteByChildIdx(child.getIdx(), now);
     }
 
     private Child isChildExisted(String childName) {
         return childRepository.findByName(childName)
                 .orElseThrow(() -> new NotFoundException("아이가 등록되어 있지 않습니다"));
     }
+
 
     @Transactional
     @Override
