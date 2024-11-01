@@ -13,8 +13,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
 
 
@@ -29,8 +27,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public CreateUserResponseDTO join(CreateUserRequestDTO createUserRequest) {
-        LocalDate date = LocalDate.parse(createUserRequest.getBirthday(), DateTimeFormatter.ISO_LOCAL_DATE);
-        return userManager.createUser(createUserRequest, passwordEncoder, date);
+        return userManager.createUser(createUserRequest, passwordEncoder);
     }
 
     @Override

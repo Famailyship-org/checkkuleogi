@@ -10,6 +10,7 @@ import com.Familyship.checkkuleogi.domains.user.dto.response.CreateUserResponseD
 import com.Familyship.checkkuleogi.domains.user.dto.response.LoginUserResponseDTO;
 import com.Familyship.checkkuleogi.domains.user.exception.UserException;
 import com.Familyship.checkkuleogi.domains.user.exception.UserExceptionType;
+import com.Familyship.checkkuleogi.domains.user.implementation.mapper.UserDtoMapper;
 import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
 import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
@@ -17,28 +18,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 @Component
 @RequiredArgsConstructor
 public class UserManager {
     private final UserRepository userRepository;
+    private final UserDtoMapper userDtoMapper;
 
-    public CreateUserResponseDTO createUser(CreateUserRequestDTO createUserRequest, PasswordEncoder passwordEncoder, LocalDate date) {
-        SiteUser member = SiteUser.builder()
-                .id(createUserRequest.getId())
-                .password(passwordEncoder.encode(createUserRequest.getPassword()))
-                .email(createUserRequest.getEmail())
-                .role(Role.USER) // 기본 역할
-                .name(createUserRequest.getName())
-                .birth(date)
-                .gender(createUserRequest.getGender())
-                .build();
+    public CreateUserResponseDTO createUser(CreateUserRequestDTO createUserRequest, PasswordEncoder passwordEncoder) {
+        LocalDate date = LocalDate.parse(createUserRequest.getBirthday(), DateTimeFormatter.ISO_LOCAL_DATE); // date 처리
+        SiteUser member = userDtoMapper.toSiteUser(createUserRequest, passwordEncoder, date); // 매퍼 수정
 
         userRepository.save(member);
-        return CreateUserResponseDTO.builder()
-                .message("회원가입 성공")
-                .build();
+        return userDtoMapper.toCreateUserResponse("회원가입 성공");
     }
 
     public LoginUserResponseDTO loginUser(LoginUserRequestDTO loginUserRequest, PasswordEncoder passwordEncoder, JwtProvider jwtProvider) {
@@ -50,14 +44,12 @@ public class UserManager {
         }
 
         String token = jwtProvider.createToken(user.getIdx(), user.getAuthorities());
-        return LoginUserResponseDTO.builder()
-                .token(token)
-                .build();
+        return userDtoMapper.toLoginUserResponse(token);
     }
 
     public UserDto findUserById(Long id) {
         SiteUser user = userRepository.findById(id)
                 .orElseThrow(() -> new UserException(UserExceptionType.USER_NOT_FOUND_EXCEPTION));
-        return new UserDto(user.getIdx(), user.getName(), user.getEmail(), user.getRole());
+        return userDtoMapper.toUserDto(user);
     }
 }
