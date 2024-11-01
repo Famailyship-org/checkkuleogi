@@ -5,19 +5,20 @@ import com.Familyship.checkkuleogi.domains.book.domain.BookMBTI;
 import com.Familyship.checkkuleogi.domains.book.domain.repository.BookRepository;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookMBTIRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookUpdateRequest;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
+@RequiredArgsConstructor
 public class BookAdminManager {
 
-    @Autowired
-    private GPTManager gpt;
-
-    @Autowired
-    private BookRepository bookRepository;
+    private final GPTManager gpt;
+    private final BookRepository bookRepository;
+    private final BookCacheManager bookCacheManager;
 
     public Book createBook(BookMBTIRequest req) {
         Integer[] mbti = gpt.getMbtiFromLLM(req);
@@ -52,8 +53,6 @@ public class BookAdminManager {
         return bookRepository.findAll();
     }
 
-
-
     public Book updateBook(Long id, BookUpdateRequest request) {
         // 기존 책 조회
         Book existingBook = bookRepository.findById(id)
@@ -71,7 +70,12 @@ public class BookAdminManager {
                 .bookMBTI(existingBook.getBookMBTI()) // 기존 BookMBTI 유지
                 .build();
 
-        // 수정된 책 저장
-        return bookRepository.save(updatedBook);
+        // DB에 수정된 책 저장
+        Book savedBook = bookRepository.save(updatedBook);
+
+        // 캐시에 업데이트 반영
+        bookCacheManager.updateBookInCache(savedBook);
+
+        return savedBook;
     }
 }
