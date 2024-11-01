@@ -34,25 +34,6 @@ public class BookCacheManager {
     private final BookRepository bookRepository;
     private final BookLikeRepository bookLikeRepository;
 
-
-    public Book findBookBy(Long bookIdx) {
-        return bookRepository.findById(bookIdx)
-                .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
-    }
-
-    public List<BookCachingItem> findBookListBy(Long childIdx) {
-        String listKey = RECENTLY_VIEWED_BOOKS_PREFIX + ":" + childIdx;
-        List<BookCachingItem> recentBooks = new ArrayList<>();
-
-        List<String> recentBookIds = redisTemplate.opsForList().range(listKey, 0, -1);
-
-        for (String bookIdx : recentBookIds) {
-            // 2. 각 bookIdx에 대해 글로벌 캐시에서 메타데이터를 가져오거나, 없으면 DB 조회
-            recentBooks.add(findBookFromCacheOrDB(childIdx, Long.valueOf(bookIdx)));
-        }
-        return recentBooks;
-    }
-
     // 책 메타데이터 캐시에서 조회
     public BookCachingItem findBookFromCacheOrDB(Long childIdx, Long bookIdx) {
         String cacheBookKey = BOOK_CACHE_KEY_PREFIX + ":" + bookIdx;
@@ -75,6 +56,32 @@ public class BookCacheManager {
         // `isLike` 필드가 최신 상태로 반영되도록 새로운 객체 생성
         bookCachingItem = updateLikeData(bookCachingItem, likeDislike);
         return bookCachingItem;
+    }
+
+    public void updateBookInCache(Book book) {
+        String cacheBookKey = BOOK_CACHE_KEY_PREFIX + ":" + book.getIdx();
+        try {
+            BookCachingItem bookCachingItem = fromBookToBookCachingItem(book, null);
+            String bookJson = objectMapper.writeValueAsString(bookCachingItem);
+
+            // 캐시에 책 정보를 업데이트
+            redisTemplate.opsForValue().set(cacheBookKey, bookJson, Duration.ofDays(7));
+        } catch (JsonProcessingException e) {
+            throw new BookException(BookExceptionType.BOOK_CACHING_ITEM_CAN_NOT_SERIALIZING);
+        }
+    }
+
+    public List<BookCachingItem> findBookListBy(Long childIdx) {
+        String listKey = RECENTLY_VIEWED_BOOKS_PREFIX + ":" + childIdx;
+        List<BookCachingItem> recentBooks = new ArrayList<>();
+
+        List<String> recentBookIds = redisTemplate.opsForList().range(listKey, 0, -1);
+
+        for (String bookIdx : recentBookIds) {
+            // 2. 각 bookIdx에 대해 글로벌 캐시에서 메타데이터를 가져오거나, 없으면 DB 조회
+            recentBooks.add(findBookFromCacheOrDB(childIdx, Long.valueOf(bookIdx)));
+        }
+        return recentBooks;
     }
 
     public Boolean findLikeFromCacheOrDB(Long childIdx, Long bookIdx) {
@@ -150,6 +157,11 @@ public class BookCacheManager {
         } catch (JsonProcessingException e) {
             throw new BookException(BookExceptionType.BOOK_CACHING_ITEM_CAN_NOT_SERIALIZING);
         }
+    }
+
+    public Book findBookBy(Long bookIdx) {
+        return bookRepository.findById(bookIdx)
+                .orElseThrow(() -> new BookException(BookExceptionType.BOOK_NOT_FOUND_EXCEPTION));
     }
 
     public BookCachingItem convertToBookCachingItem(BookCachingItem cachedBook) {
