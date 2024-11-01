@@ -36,7 +36,7 @@ public class DeleteHardConfig {
     private final ChildMBTILogRepository childMBTILogRepository;
 
     private LocalDateTime getThresholdTime() {
-        return LocalDateTime.now().minusMinutes(1);
+        return LocalDateTime.now().minusMonths(1);
     }
 
     @Bean
