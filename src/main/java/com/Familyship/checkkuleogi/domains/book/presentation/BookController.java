@@ -7,6 +7,8 @@ import com.Familyship.checkkuleogi.domains.book.dto.request.BookMBTIRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookUpdateRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.response.BookResponse;
 import com.Familyship.checkkuleogi.domains.book.service.BookService;
+
+import static com.Familyship.checkkuleogi.domains.book.presentation.enums.BookControllerResp.*;
 import static com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity.success;
 import com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity;
 import lombok.AllArgsConstructor;
@@ -40,7 +42,7 @@ public class BookController {
     @DeleteMapping("/admin/{bookId}")
     public CommonResponseEntity<String> deleteBook(@PathVariable Long bookId) {
         bookService.deleteBookById(bookId);
-        return success("삭제 완료");
+        return success(DELETE_BOOK_SUCCESS.getMessage());
     }
 
     @GetMapping("/{bookIdx}")
@@ -66,12 +68,12 @@ public class BookController {
     @PostMapping("/like")
     public CommonResponseEntity<String> feedbackOnBook(@RequestBody BookLikeRequest req) {
         bookService.feedbackOnBook(req);
-        return success("피드백 반영 완료");
+        return success(FEEDBACK_ON_BOOK_SUCCESS.getMessage());
     }
 
     @DeleteMapping("/like")
     public CommonResponseEntity<String> cancelFeedbackOnBook(@RequestBody BookLikeRequest req) {
         bookService.cancelFeedbackOnBook(req);
-        return success("피드백 삭제 완료");
+        return success(DELETE_FEEDBACK_ON_BOOK_SUCCESS.getMessage());
     }
 }
