@@ -17,7 +17,7 @@ public class CheckActiveUserScheduler {
     private final JobLauncher jobLauncher;
     private final Job updateUserActivityStatusJob;
 
-    @Scheduled(cron = "0 */2 * * * *")  // 매주 일요일 자정에 실행
+    @Scheduled(cron = "0 0 0 * * MON")  // 매주 일요일 자정에 실행
     public void scheduleUpdateUserActivityStatusJob() {
         try {
             JobParameters jobParameters = new JobParametersBuilder()

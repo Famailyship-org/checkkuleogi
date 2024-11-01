@@ -17,7 +17,7 @@ public class DeleteHardScheduler {
     private final JobLauncher jobLauncher;
     private final Job deleteOldRecordsJob;
 
-    @Scheduled(cron = "0 */2 * * * *") // 매일 자정에 실행
+    @Scheduled(cron = "0 0 0 * * *")  // 매일 자정에 실행
     public void scheduleDeleteOldRecordsJob() {
         try {
             JobParameters jobParameters = new JobParametersBuilder()
