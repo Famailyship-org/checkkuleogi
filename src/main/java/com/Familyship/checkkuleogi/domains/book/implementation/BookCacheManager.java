@@ -90,7 +90,6 @@ public class BookCacheManager {
     }
 
     public Boolean findLikeFromCacheOrDB(Long childIdx, Long bookIdx) {
-
         //TODO 추후, 좋아요까지 캐싱할 것인지 한다면 DB에서는 따로 관리안할지 고민필요. 좋아요는 쉽게 update되기 때문에, 현재 동기화 이슈가 있을 수 있음
         /*
         String likeKey = BOOK_LIKE_CACHE_KEY_PREFIX + childIdx + ":" + bookIdx;
