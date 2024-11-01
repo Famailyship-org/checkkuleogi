@@ -5,7 +5,7 @@ import com.Familyship.checkkuleogi.domains.user.dto.request.CreateUserRequestDTO
 import com.Familyship.checkkuleogi.domains.user.dto.request.LoginUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.CreateUserResponseDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.LoginUserResponseDTO;
-import com.Familyship.checkkuleogi.domains.user.service.UserService;
+import com.Familyship.checkkuleogi.domains.user.service.UserServiceImpl;
 
 import com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import static com.Familyship.checkkuleogi.global.domain.response.CommonResponseE
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @PostMapping("/join")
     public CommonResponseEntity<CreateUserResponseDTO> join(@RequestBody CreateUserRequestDTO user) {
