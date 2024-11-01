@@ -10,6 +10,8 @@ import com.Familyship.checkkuleogi.domains.child.domain.Child;
 import com.Familyship.checkkuleogi.domains.child.implementation.ChildManager;
 import com.Familyship.checkkuleogi.domains.like.domain.BookLike;
 import com.Familyship.checkkuleogi.domains.like.domain.repository.BookLikeRepository;
+import com.Familyship.checkkuleogi.domains.recommend.domain.Recommend;
+import com.Familyship.checkkuleogi.domains.recommend.domain.repository.RecommendRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,7 @@ import java.util.List;
 public class BookManager {
     private final BookRepository bookRepository;
     private final BookLikeRepository bookLikeRepository;
+    private final RecommendRepository recommendRepository;
 
     private final ChildManager childManager;
     private final BookCacheManager bookCacheManager;
@@ -55,6 +58,18 @@ public class BookManager {
             likedBooks.add(cachedBook);
         }
         return likedBooks;
+    }
+
+    public List<BookCachingItem> getRecommendBooks(Long childIdx) {
+        List<Recommend> recommendations = recommendRepository.findByChildIdx(childIdx);
+        List<BookCachingItem> recommendedBooks = new ArrayList<>();
+
+        for (Recommend recommend : recommendations) {
+            // 책 카시에서 메타데이터 검색하기, 없을 경우 DB 조회 후 캐시에 저장
+            BookCachingItem cachedBook = bookCacheManager.findBookFromCacheOrDB(childIdx, recommend.getBookIdx());
+            recommendedBooks.add(cachedBook);
+        }
+        return recommendedBooks;
     }
 
     public void feedbackOnBook(BookLikeRequest req) {

@@ -16,12 +16,13 @@ public interface BookService {
     List<BookResponse> getAllBooks();
     BookResponse updateBook(Long bookId, BookUpdateRequest request);
 
-
-    // 유저 기능
+    // 유저 기능 (Select, CACHING)
     BookCachingItem getBook(Long ChildIdx, Long BookIdx);
     List<BookCachingItem> getRecentlyViewedBooks(Long childIdx);
     List<BookCachingItem> getLikedBooks(Long childIdx);
+    List<BookCachingItem> getRecommendBooks(Long childIdx);
 
+    // 유저 기능 (Update)
     void feedbackOnBook(BookLikeRequest req);
     void cancelFeedbackOnBook(BookLikeRequest req);
 }

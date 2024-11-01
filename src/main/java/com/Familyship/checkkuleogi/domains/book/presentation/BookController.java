@@ -53,6 +53,11 @@ public class BookController {
         return success(bookService.getRecentlyViewedBooks(childIdx));
     }
 
+    @GetMapping("/{childIdx}/recommend")
+    public CommonResponseEntity<List<BookCachingItem>> getRecommendBooks(@PathVariable Long childIdx) {
+        return success(bookService.getRecommendBooks(childIdx));
+    }
+
     @PostMapping("/like")
     public CommonResponseEntity<String> feedbackOnBook(@RequestBody BookLikeRequest req) {
         bookService.feedbackOnBook(req);
@@ -63,10 +68,5 @@ public class BookController {
     public CommonResponseEntity<String> cancelFeedbackOnBook(@RequestBody BookLikeRequest req) {
         bookService.cancelFeedbackOnBook(req);
         return success("피드백 삭제 완료");
-    }
-
-    @GetMapping("/{childIdx}/like")
-    public CommonResponseEntity<List<BookCachingItem>> getLikedBooks(@PathVariable Long childIdx) {
-        return success(bookService.getLikedBooks(childIdx));
     }
 }
