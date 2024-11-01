@@ -1,10 +1,11 @@
 package com.Familyship.checkkuleogi.domains.user.presentation;
 
+import com.Familyship.checkkuleogi.domains.user.dto.UserDto;
 import com.Familyship.checkkuleogi.domains.user.dto.request.CreateUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.request.LoginUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.CreateUserResponseDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.LoginUserResponseDTO;
-import com.Familyship.checkkuleogi.domains.user.service.UserService;
+import com.Familyship.checkkuleogi.domains.user.service.UserServiceImpl;
 
 import com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ import static com.Familyship.checkkuleogi.global.domain.response.CommonResponseE
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @PostMapping("/join")
     public CommonResponseEntity<CreateUserResponseDTO> join(@RequestBody CreateUserRequestDTO user) {
@@ -27,6 +28,11 @@ public class UserController {
     @PostMapping("/login")
     public CommonResponseEntity<LoginUserResponseDTO> login(@RequestBody LoginUserRequestDTO user) {
         return success(userService.login(user));
+    }
+
+    @GetMapping("/{id}")
+    public CommonResponseEntity<UserDto> getUserById(@PathVariable Long id) {
+        return success(userService.findUserById(id)); // 성공 응답 반환
     }
 
 }
