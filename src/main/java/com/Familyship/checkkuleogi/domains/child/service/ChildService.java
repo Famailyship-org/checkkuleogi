@@ -19,4 +19,6 @@ public interface ChildService {
 
     ChildResponse getChildById(Long childIdx);
 
+    GetChildMbtiLogsResponseDTO getMbtiLogs(Long childIdx);
+
 }

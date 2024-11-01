@@ -7,6 +7,8 @@ import com.Familyship.checkkuleogi.domains.book.dto.request.BookMBTIRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookUpdateRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.response.BookResponse;
 import com.Familyship.checkkuleogi.domains.book.service.BookService;
+
+import static com.Familyship.checkkuleogi.domains.book.presentation.enums.BookControllerResp.*;
 import static com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity.success;
 import com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity;
 import lombok.AllArgsConstructor;
@@ -27,10 +29,9 @@ public class BookController {
         return success(bookService.createBook(req));
     }
 
-    @DeleteMapping("/admin/{bookId}")
-    public CommonResponseEntity<String> deleteBook(@PathVariable Long bookId) {
-        bookService.deleteBookById(bookId);
-        return success("삭제 완료");
+    @GetMapping("")
+    public CommonResponseEntity<List<BookResponse>> getAllBooks() {
+        return success(bookService.getAllBooks());
     }
 
     @PutMapping("/admin/{bookId}")
@@ -38,9 +39,15 @@ public class BookController {
         return success(bookService.updateBook(bookId, request));
     }
 
-    @GetMapping("")
-    public CommonResponseEntity<List<BookResponse>> getAllBooks() {
-        return success(bookService.getAllBooks());
+    @DeleteMapping("/admin/{bookId}")
+    public CommonResponseEntity<String> deleteBook(@PathVariable Long bookId) {
+        bookService.deleteBookById(bookId);
+        return success(DELETE_BOOK_SUCCESS.getMessage());
+    }
+
+    @GetMapping("/{bookIdx}")
+    public CommonResponseEntity<BookCachingItem> getBook(@RequestParam("kidIdx") Long childIdx, @PathVariable Long bookIdx) {
+        return success(bookService.getBook(childIdx, bookIdx));
     }
 
     @GetMapping("/{childIdx}/recent")
@@ -48,25 +55,25 @@ public class BookController {
         return success(bookService.getRecentlyViewedBooks(childIdx));
     }
 
-    @GetMapping("/{bookIdx}")
-    public CommonResponseEntity<BookResponse> selectBook(@RequestParam("kidIdx") Long childIdx, @PathVariable Long bookIdx) {
-        return success(bookService.selectBookBy(childIdx, bookIdx));
+    @GetMapping("/{childIdx}/like")
+    public CommonResponseEntity<List<BookCachingItem>> getLikedBooks(@PathVariable Long childIdx) {
+        return success(bookService.getLikedBooks(childIdx));
+    }
+
+    @GetMapping("/{childIdx}/recommend")
+    public CommonResponseEntity<List<BookCachingItem>> getRecommendBooks(@PathVariable Long childIdx) {
+        return success(bookService.getRecommendBooks(childIdx));
     }
 
     @PostMapping("/like")
     public CommonResponseEntity<String> feedbackOnBook(@RequestBody BookLikeRequest req) {
         bookService.feedbackOnBook(req);
-        return success("피드백 반영 완료");
+        return success(FEEDBACK_ON_BOOK_SUCCESS.getMessage());
     }
 
     @DeleteMapping("/like")
     public CommonResponseEntity<String> cancelFeedbackOnBook(@RequestBody BookLikeRequest req) {
         bookService.cancelFeedbackOnBook(req);
-        return success("피드백 삭제 완료");
-    }
-
-    @GetMapping("/{childIdx}/like")
-    public CommonResponseEntity<List<BookCachingItem>> getLikedBooks(@PathVariable Long childIdx) {
-        return success(bookService.getLikedBooks(childIdx));
+        return success(DELETE_FEEDBACK_ON_BOOK_SUCCESS.getMessage());
     }
 }
