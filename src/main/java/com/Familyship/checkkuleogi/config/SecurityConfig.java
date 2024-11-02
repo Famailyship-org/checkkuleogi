@@ -57,6 +57,7 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**").hasRole("ADMIN")  // /admin/** 경로는 ADMIN 권한 필요
                 .requestMatchers("/user/**").permitAll()// /user/** 경로는 권한 필요 없음
                 .requestMatchers("/actuator/health").permitAll() // 상태 경로 확인은 권한 개방
+                .requestMatchers("/api/v1/book").permitAll()
                 .anyRequest().hasRole("USER") // 나머지는 user 권한 필요
         );
 
