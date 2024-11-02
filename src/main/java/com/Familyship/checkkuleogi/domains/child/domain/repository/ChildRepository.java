@@ -14,6 +14,7 @@ import java.util.Set;
 
 public interface ChildRepository extends JpaRepository<Child, Long> {
     Optional<Child> findByName(String name);
+    Optional<Child> findByIdx(Long id);
 
     @Query("SELECT c.idx FROM Child c WHERE c.parent.idx= :parentId")
     List<Long> findIdsByParentId(@Param("parentId") Long parentId);

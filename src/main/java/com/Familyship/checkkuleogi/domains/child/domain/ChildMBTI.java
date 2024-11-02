@@ -20,17 +20,17 @@ public class ChildMBTI extends BaseEntity {
     private Long idx;
 
     @Column(name = "mbti_e")
-    private int mbtiE;
+    private Integer mbtiE;
 
     @Column(name = "mbti_s")
-    private int mbtiS;
+    private Integer mbtiS;
 
     @Column(name = "mbti_t")
-    private int mbtiT;
+    private Integer mbtiT;
 
     @Column(name = "mbti_j")
-    private int mbtiJ;
+    private Integer mbtiJ;
 
-    @Column(name = "child_idx")
+    @Column(name = "child_idx", unique = true)
     private Long childIdx;
 }
