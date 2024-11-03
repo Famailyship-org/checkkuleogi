@@ -32,9 +32,11 @@ public class ChildController {
         return  success(childService.loginChild(token));
     }
     @GetMapping("/mbti")
-    public CommonResponseEntity<ReadChildResponseDTO> getMBTI(@RequestBody ReadChildRequestDTO readChildRequestDTO) {
-        return success(childService.readMBTI(readChildRequestDTO));
+    public CommonResponseEntity<ReadChildResponseDTO> getMBTI(@RequestParam Long childIdx) {
+        return success(childService.readMBTI(ReadChildRequestDTO.builder().childIdx(childIdx).build()));
     }
+
+
 
     @DeleteMapping("/mbti")
     public CommonResponseEntity deleteMBTI(@RequestBody DeleteChildMBTIRequestDTO deleteChildMBTIRequestDTO) {

@@ -140,8 +140,8 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     public ReadChildResponseDTO readMBTI(ReadChildRequestDTO readChildRequestDTO) {
-        Child child = isChildExisted(readChildRequestDTO.getChildName());
-
+        Child child = childRepository.findByIdx(readChildRequestDTO.getChildIdx())
+                .orElseThrow(() -> new NotFoundException("아이가 등록되어 있지 않습니다"));
         return ReadChildResponseDTO.builder()
                 .mbti(child.getMbti()).build();
     }

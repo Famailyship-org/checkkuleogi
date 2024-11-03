@@ -13,7 +13,6 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-
 public interface ChildMBTILogRepository extends JpaRepository<ChildMBTILog, Long> {
     @Modifying
     @Transactional
@@ -22,6 +21,9 @@ public interface ChildMBTILogRepository extends JpaRepository<ChildMBTILog, Long
 
 
     @Query("SELECT m.mbtiE, m.mbtiJ, m.mbtiS, m.mbtiT " +
-            "FROM ChildMBTILog m WHERE m.childIdx = :childIdx ORDER BY m.updatedAt desc ")
+            "FROM ChildMBTILog m WHERE m.childIdx = :childIdx and m.isDeleted = false ORDER BY m.updatedAt desc ")
     List<Object[]> findTopNByChildIdxOrderByUpdatedAtDesc(@Param("childIdx") Long childIdx, Pageable pageable);
 }
+
+
+
