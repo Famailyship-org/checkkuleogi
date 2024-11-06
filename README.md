@@ -11,15 +11,15 @@ $ docker compose up --build -d
 <br/>
 
 # 1. Project Overview (프로젝트 개요)
-- 프로젝트 이름: Coupong
-- 프로젝트 설명: 선착순 쿠폰 이벤트 플랫폼
+- 프로젝트 이름: 책꾸러기
+- 프로젝트 설명: 자녀 맞춤 도서 추천 시스쳄
 
 <br/>
 <br/>
 
 # 2. Team Members (팀원 및 팀 소개)
 | 진명인 | 권예진 | 김태연 | 박정웅 | 양석진 |
-|:------:|:------:|:------:|:------:||:------:|
+|:------:|:------:|:------:|:------:|:------:|
 | <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="150"> | <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="150"> | <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="150"> | <img src="https://avatars.githubusercontent.com/daase"  alt="박정웅" width="150"> |
 <img src="https://avatars.githubusercontent.com/harvartz"  alt="양석진" width="150"> |
 | BE | BE | BE | BE | BE |
