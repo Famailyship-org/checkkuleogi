@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/31ed6dfe-d3ba-4af8-8662-54dbecc97b55)![image](https://github.com/user-attachments/assets/e9d1750a-f721-43ab-a454-5e3ead7b52ff)
+
 
 # 0. Getting Started (시작하기)
 ```bash
@@ -18,11 +18,12 @@ $ docker compose up --build -d
 <br/>
 
 # 2. Team Members (팀원 및 팀 소개)
-| 진명인 | 백효석 | 심지혜 | 강희준 |
-|:------:|:------:|:------:|:------:|
-| <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="150"> | <img src="https://avatars.githubusercontent.com/alexization" alt="백효석" width="150"> | <img src="https://avatars.githubusercontent.com/sapientia1007" alt="심지혜" width="150"> | <img src="https://avatars.githubusercontent.com/dhfkdlsj" alt="강희준" width="150"> |
-| BE | BE | BE | BE |
-| [GitHub](https://github.com/myeonginjin) | [GitHub](https://github.com/alexization) | [GitHub](https://github.com/sapientia1007) | [GitHub](https://github.com/dhfkdlsj) |
+| 진명인 | 권예진 | 김태연 | 박정웅 || 양석진 |
+|:------:|:------:|:------:|:------:||:------:|
+| <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="150"> | <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="150"> | <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="150"> | <img src="https://avatars.githubusercontent.com/daase"  alt="박정웅" width="150"> |
+<img src="https://avatars.githubusercontent.com/harvartz"  alt="양석진" width="150"> |
+| BE | BE | BE | BE | BE |
+| [GitHub](https://github.com/myeonginjin) | [GitHub](https://github.com/YaeJinKwon) | [GitHub](https://github.com/taeyeon0319) | [GitHub](https://github.com/daase) | [GitHub](https://github.com/harvartz) |
 
 <br/>
 <br/>
