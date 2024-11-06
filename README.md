@@ -91,8 +91,8 @@ $ docker compose up --build -d
 |-----------------|-----------------|
 | AWS    |  <img src="https://github.com/user-attachments/assets/0ec812d8-6256-425a-bbf4-797b5a0c5c49" alt="AWS" width="100">    
 | Docker    |  <img src="https://github.com/user-attachments/assets/14027b7d-6e68-4918-8a01-ac2ba9e9778a" alt="Docker" width="100">
-| Elastic Cahce   |  <img src="https://github.com/user-attachments/assets/83021a64-e5e1-4e6e-9ef0-b18f03c8cbd8" alt="Elastic Cahce" width="150">
-| K6    |  <img src="https://github.com/user-attachments/assets/260c5ab4-9d43-4edc-ab45-3fed9d61e8c2" alt="K6" width="150">
+| Elasticahce   |  <img src="https://github.com/user-attachments/assets/32aa806b-e2da-496e-b6c9-babaa8805bb7" alt="Elasticahce" width="150">
+| K6    |  <img src="https://github.com/user-attachments/assets/d3e9ec42-1254-4593-a644-fc8fabb016ca" alt="K6" width="150">
 <br/>
 
 ## 5.4 Cooperation
