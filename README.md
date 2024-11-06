@@ -20,11 +20,7 @@ $ docker compose up --build -d
 # 2. Team Members (팀원 및 팀 소개)
 | 진명인 | 권예진 | 김태연 | 박정웅 | 양석진 |
 |:------:|:------:|:------:|:------:|:------:|
-| <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="150"> 
-| <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="150"> 
-| <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="150"> 
-| <img src="https://avatars.githubusercontent.com/daase"  alt="박정웅" width="150"> 
-| <img src="https://avatars.githubusercontent.com/harvartz"  alt="양석진" width="150"> 
+| <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="150"> | <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="150"> | <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="150"> | <img src="https://avatars.githubusercontent.com/daase"  alt="박정웅" width="150"> | <img src="https://avatars.githubusercontent.com/harvartz"  alt="양석진" width="150"> 
 | BE | BE | BE | BE | BE |
 | [GitHub](https://github.com/myeonginjin) | [GitHub](https://github.com/YaeJinKwon) | [GitHub](https://github.com/taeyeon0319) | [GitHub](https://github.com/daase) | [GitHub](https://github.com/harvartz) |
 
