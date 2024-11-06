@@ -1,4 +1,4 @@
-
+![image](https://github.com/user-attachments/assets/31ed6dfe-d3ba-4af8-8662-54dbecc97b55)![image](https://github.com/user-attachments/assets/e9d1750a-f721-43ab-a454-5e3ead7b52ff)
 
 # 0. Getting Started (시작하기)
 ```bash
@@ -50,10 +50,12 @@ $ docker compose up --build -d
 # 4. Tasks & Responsibilities (작업 및 역할 분담)
 |  |  |  |
 |-----------------|-----------------|-----------------|
-| 진명인    |  <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="100"> | <ul><li>프로젝트 기획 및 리딩</li><li>인프라 구축 (WAS)</li><li>쿠폰 이벤트 시스템</li><li>금칙어 필터링 시스템</li></ul>     |
-| 백효석   |  <img src="https://avatars.githubusercontent.com/alexization" alt="백효석" width="100">| <ul><li>인증/인가 시스템</li><li>서버 부하 테스트</li><li>금칙어 필터링 시스템</li></ul> |
-| 심지혜   |  <img src="https://avatars.githubusercontent.com/sapientia1007" alt="심지혜" width="100">    |<ul><li>실시간 채팅 시스템</li><li>개발 문서 정리</li><li>QA</li></ul>  |
-| 강희준    |  <img src="https://avatars.githubusercontent.com/dhfkdlsj" alt="강희준" width="100">    | <ul><li>리더보드 시스템</li><li>인프라 구축 (Web Server)</li><li>QA</li></ul>    |
+| 진명인    |  <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="100"> | <ul><li>팀 리딩</li><li>프로젝트 기획 및 설계</li></ul>     |
+| 백효석   |  <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="100">| <ul><li>개인 맞춤형 추천 시스템</li><li>스프링 배치를 통한 진단 데이터 물리적 삭제</li></ul> |
+| 백효석   |  <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="100">| <ul><li>도서 성향 추출 시스템</li><li>피그마 및 프론트엔드</li></ul> |
+| 강희준    |  <img src="https://avatars.githubusercontent.com/daase" alt="박정웅" width="100">    | <ul><li>인증/인가 시스템</li><li>대규모 아키텍쳐 설계 및 세팅</li></ul>    |
+| 심지혜   |  <img src="https://avatars.githubusercontent.com/harvartz" alt="양석진" width="100">    |<ul><li>선착순 응모 시스템 </li><li>대규모 아키텍쳐 설계 및 세팅</li></ul>  |
+
 
 <br/>
 
