@@ -5,7 +5,7 @@
 $ ./gradlew clean build -x test 
 $ docker compose up --build -d
 ```
----->   [서비스 링크](https://coupong.netlify.app/)   <----
+---->      <----
 
 <br/>
 <br/>
@@ -153,25 +153,15 @@ test
 <br/>
 
 # 8. ERD
-<img src="https://github.com/user-attachments/assets/25b6826f-99bc-4573-855c-c795f7f8dc47" alt="React" width="500"> <br/><br/>
+<img src="" alt="React" width="500"> <br/><br/>
 
 # 9. 시스템 아키텍처
-<img src="https://github.com/user-attachments/assets/c4d06585-0d93-481e-b14c-81b70ae594c3" alt="React" width="500"> <br/><br/>
+<img src="" alt="React" width="500"> <br/><br/>
 
 # 10. 인터페이스 설계
-<img src="https://github.com/user-attachments/assets/6e6238ea-3994-4eec-a1ad-d533b26a8971" alt="React" width="300">
-<img src="https://github.com/user-attachments/assets/0516008c-7991-4cd5-b089-daac5b4611aa" alt="React" width="300">
-<img src="https://github.com/user-attachments/assets/6185929c-0a1a-4250-94b8-d776ab0eca7c" alt="React" width="500"> <br/><br/>
-
-# 11. 인증•인가 플로우
-<img src="https://github.com/user-attachments/assets/8e286e17-370a-4f67-b3cc-0e4ae29ed673" alt="React" width="300"> <br/><br/>
-
-# 12. 쿠폰 이벤트 시스템 프로세스
-<img src="https://github.com/user-attachments/assets/4a5bf147-cd63-4eb0-97c6-f8fcffd91fa2" alt="React" width="500"> <br/><br/>
-
-# 13. 금칙어 필터링 시스템 프로세스
-<img src="https://github.com/user-attachments/assets/8df53e98-8da1-46fe-8830-e8914b587fb6" alt="React" width="500"> 
-<img src="https://github.com/user-attachments/assets/187da3cf-ffdc-47ed-beb5-1211146bfa4f" alt="React" width="500"> 
+<img src="" alt="React" width="300">
+<img src="" alt="React" width="300">
+<img src="" alt="React" width="500"> <br/><br/>
 
 
 
