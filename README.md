@@ -65,10 +65,10 @@ $ docker compose up --build -d
 | JAVA          |<img src="https://github.com/user-attachments/assets/5df80afe-5c3d-47c1-9f6d-1549d1b2fc42" alt="JAVA" width="200">| 
 | Spring Boot   |   <img src="https://github.com/user-attachments/assets/4d0c279a-0dfe-4253-b79e-c615935f9aff" alt="Spring Boot" width="200">|
 | Spring Security   |   <img src="https://github.com/user-attachments/assets/f4744195-f1d0-44d9-b64c-0a027aaaf05a" alt="Spring Security" width="200">|
-| JWT   |   <img src="https://github.com/user-attachments/assets/d611f4a1-1d10-46a5-a83f-0048c3dfb776" alt="JWT" width="200">|
-| Spring Batch   |   <img src="https://github.com/user-attachments/assets/d611f4a1-1d10-46a5-a83f-0048c3dfb776" alt="Spring Batch" width="200">|
-| Python   |   <img src="https://github.com/user-attachments/assets/d611f4a1-1d10-46a5-a83f-0048c3dfb776" alt="Python" width="200">|
-| Rest API  |   <img src="https://github.com/user-attachments/assets/d611f4a1-1d10-46a5-a83f-0048c3dfb776" alt="Rest API" width="200">|
+| JWT   |   <img src="https://github.com/user-attachments/assets/d43d4e63-3d5c-4ba2-a323-a68c6a8924e1" alt="JWT" width="200">|
+| Spring Batch   |   <img src="https://github.com/user-attachments/assets/a88d9a9b-d01b-45c1-99ff-a4c431183dc4" alt="Spring Batch" width="200">|
+| Python   |   <img src="https://github.com/user-attachments/assets/4d097a53-ce0b-4d9c-8182-7eb7af9750d0" alt="Python" width="200">|
+| Fast API  |   <img src="https://github.com/user-attachments/assets/bcf0c46b-80b8-4305-b6b3-8c58c20ddb7a" alt="Fast API" width="200">|
 <br/>
 
 ## 5.2 Frotend
