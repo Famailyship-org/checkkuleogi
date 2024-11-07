@@ -1,6 +1,6 @@
 package com.Familyship.checkkuleogi.domains.book.implementation.mapper;
 
-import com.Familyship.checkkuleogi.domains.book.domain.Book;
+import com.Familyship.checkkuleogi.domains.book.jpa.Book;
 import com.Familyship.checkkuleogi.domains.book.dto.response.BookResponse;
 import org.springframework.stereotype.Component;
 

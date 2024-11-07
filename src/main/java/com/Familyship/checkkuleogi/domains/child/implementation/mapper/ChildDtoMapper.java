@@ -2,7 +2,7 @@ package com.Familyship.checkkuleogi.domains.child.implementation.mapper;
 
 
 
-import com.Familyship.checkkuleogi.domains.child.domain.Child;
+import com.Familyship.checkkuleogi.domains.child.jpa.Child;
 import com.Familyship.checkkuleogi.domains.child.dto.response.CreateChildResponseDTO;
 import com.Familyship.checkkuleogi.domains.child.dto.request.LoginChildRequestDTO;
 import org.springframework.stereotype.Component;

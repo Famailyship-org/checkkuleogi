@@ -1,6 +1,6 @@
 package com.Familyship.checkkuleogi.domains.user.service;
 
-import com.Familyship.checkkuleogi.domains.user.domain.repository.UserRepository;
+import com.Familyship.checkkuleogi.domains.user.jpa.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.security.core.userdetails.UserDetails;

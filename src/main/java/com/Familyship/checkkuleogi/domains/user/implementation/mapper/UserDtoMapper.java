@@ -1,7 +1,7 @@
 package com.Familyship.checkkuleogi.domains.user.implementation.mapper;
 
-import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
-import com.Familyship.checkkuleogi.domains.user.domain.enums.Role;
+import com.Familyship.checkkuleogi.domains.user.jpa.SiteUser;
+import com.Familyship.checkkuleogi.domains.user.jpa.enums.Role;
 import com.Familyship.checkkuleogi.domains.user.dto.UserDto;
 import com.Familyship.checkkuleogi.domains.user.dto.request.CreateUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.CreateUserResponseDTO;
@@ -10,7 +10,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 @Component
 public class UserDtoMapper {

@@ -1,8 +1,7 @@
 package com.Familyship.checkkuleogi.domains.user.implementation;
 
-import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
-import com.Familyship.checkkuleogi.domains.user.domain.enums.Role;
-import com.Familyship.checkkuleogi.domains.user.domain.repository.UserRepository;
+import com.Familyship.checkkuleogi.domains.user.jpa.SiteUser;
+import com.Familyship.checkkuleogi.domains.user.jpa.repository.UserRepository;
 import com.Familyship.checkkuleogi.domains.user.dto.UserDto;
 import com.Familyship.checkkuleogi.domains.user.dto.request.CreateUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.request.LoginUserRequestDTO;
@@ -11,7 +10,7 @@ import com.Familyship.checkkuleogi.domains.user.dto.response.LoginUserResponseDT
 import com.Familyship.checkkuleogi.domains.user.exception.UserException;
 import com.Familyship.checkkuleogi.domains.user.exception.UserExceptionType;
 import com.Familyship.checkkuleogi.domains.user.implementation.mapper.UserDtoMapper;
-import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
+import com.Familyship.checkkuleogi.global.exception.NotFoundException;
 import com.Familyship.checkkuleogi.security.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

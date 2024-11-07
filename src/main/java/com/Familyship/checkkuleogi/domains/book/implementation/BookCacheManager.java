@@ -1,12 +1,12 @@
 package com.Familyship.checkkuleogi.domains.book.implementation;
 
-import com.Familyship.checkkuleogi.domains.book.domain.Book;
-import com.Familyship.checkkuleogi.domains.book.domain.repository.BookRepository;
+import com.Familyship.checkkuleogi.domains.book.jpa.Book;
+import com.Familyship.checkkuleogi.domains.book.jpa.repository.BookRepository;
 import com.Familyship.checkkuleogi.domains.book.dto.BookCachingItem;
 import com.Familyship.checkkuleogi.domains.book.exception.BookException;
 import com.Familyship.checkkuleogi.domains.book.exception.BookExceptionType;
-import com.Familyship.checkkuleogi.domains.like.domain.BookLike;
-import com.Familyship.checkkuleogi.domains.like.domain.repository.BookLikeRepository;
+import com.Familyship.checkkuleogi.domains.book.jpa.BookLike;
+import com.Familyship.checkkuleogi.domains.book.jpa.repository.BookLikeRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

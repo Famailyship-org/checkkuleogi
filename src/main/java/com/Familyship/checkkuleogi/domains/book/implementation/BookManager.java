@@ -1,17 +1,17 @@
 package com.Familyship.checkkuleogi.domains.book.implementation;
 
-import com.Familyship.checkkuleogi.domains.book.domain.Book;
-import com.Familyship.checkkuleogi.domains.book.domain.repository.BookRepository;
+import com.Familyship.checkkuleogi.domains.book.jpa.Book;
+import com.Familyship.checkkuleogi.domains.book.jpa.repository.BookRepository;
 import com.Familyship.checkkuleogi.domains.book.dto.BookCachingItem;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookLikeRequest;
 import com.Familyship.checkkuleogi.domains.book.exception.BookException;
 import com.Familyship.checkkuleogi.domains.book.exception.BookExceptionType;
-import com.Familyship.checkkuleogi.domains.child.domain.Child;
+import com.Familyship.checkkuleogi.domains.child.jpa.Child;
 import com.Familyship.checkkuleogi.domains.child.implementation.ChildManager;
-import com.Familyship.checkkuleogi.domains.like.domain.BookLike;
-import com.Familyship.checkkuleogi.domains.like.domain.repository.BookLikeRepository;
-import com.Familyship.checkkuleogi.domains.recommend.domain.Recommend;
-import com.Familyship.checkkuleogi.domains.recommend.domain.repository.RecommendRepository;
+import com.Familyship.checkkuleogi.domains.book.jpa.BookLike;
+import com.Familyship.checkkuleogi.domains.book.jpa.repository.BookLikeRepository;
+import com.Familyship.checkkuleogi.domains.recommend.jpa.Recommend;
+import com.Familyship.checkkuleogi.domains.recommend.jpa.repository.RecommendRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
