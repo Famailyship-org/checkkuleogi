@@ -153,6 +153,8 @@ main
                 ├── leaderboard
                 └── user
 └── CheckkuleogiApplication
+```
+
 <br/>
 📈 7. Development Workflow (개발 워크플로우)  
 **브랜치 전략 (Branch Strategy)**  
