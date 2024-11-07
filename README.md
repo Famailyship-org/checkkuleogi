@@ -156,28 +156,31 @@ main
 ```
 
 <br/>
-📈 7. Development Workflow (개발 워크플로우)  
-**브랜치 전략 (Branch Strategy)**  
+## 📈 7. Development Workflow (개발 워크플로우)  
+
+### 브랜치 전략 (Branch Strategy)  
 Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
 
 - **main**: 배포 가능한 상태의 코드를 유지합니다. 모든 배포는 이 브랜치에서 이루어집니다.
 - **develop/{feature/release/refactoring...}**: 팀원 각자의 개발 브랜치로, 모든 기능 개발은 이 브랜치에서 이루어집니다.
 
 <br/>
-🗂️ 8. ERD  
+
+## 🗂️ 8. ERD  
 <img src="https://github.com/user-attachments/assets/2a1c29e2-384c-402d-9b65-c6142e5b062d" alt="ERD" width="1000">  
 
 <br/>
-🏗️ 9. 시스템 아키텍처  
 
-**9.1 도서 MBTI 추출**  
+## 🏗️ 9. 시스템 아키텍처  
+
+### 9.1 도서 MBTI 추출  
 <img src="https://github.com/user-attachments/assets/afc8fcb5-ed52-4918-9d97-c0a60113c653" alt="MBTI추출" width="600">
 
-**9.2 추천 시스템**  
+### 9.2 추천 시스템  
 <img src="https://github.com/user-attachments/assets/48cbe44d-2ef5-4e95-b403-7eaa39a2106a" alt="추천" width="600">
 
-**9.3 선착순 시스템**  
+### 9.3 선착순 시스템  
 <img src="https://github.com/user-attachments/assets/7f39b82f-cf66-4b57-8ef7-2d5fbfb1c42a" alt="선착순" width="600">
 
-**9.4 유저 MBTI 변환**  
+### 9.4 유저 MBTI 변환  
 <img src="https://github.com/user-attachments/assets/9eef0afd-6da2-4a73-9353-bf62e0248906" alt="MBTI변환" width="600">
