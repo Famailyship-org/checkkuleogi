@@ -90,6 +90,13 @@ $ docker compose up --build -d
 | Docker    |  <img src="https://github.com/user-attachments/assets/14027b7d-6e68-4918-8a01-ac2ba9e9778a" alt="Docker" width="100">
 | Elasticache   |  <img src="https://github.com/user-attachments/assets/5693f3b6-c0c9-4265-9afd-37b07e73f27e" alt="Elasticahce" width="150">
 | K6    |  <img src="https://github.com/user-attachments/assets/d3e9ec42-1254-4593-a644-fc8fabb016ca" alt="K6" width="150">
+| ECS    |  <img src="https://github.com/user-attachments/assets/34a918db-c371-4f26-92f6-bd9fa29822bf" alt="ECS" width="150">
+| ECR    |  <img src="https://github.com/user-attachments/assets/3fdfef19-4a99-47b2-a07c-39f4aa5427af" alt="ECR" width="150">
+| SQS    |  <img src="https://github.com/user-attachments/assets/5ad952cc-c28e-403f-ac76-4d7abeeff85e" alt="SQS" width="150">
+| ELB    |  <img src="https://github.com/user-attachments/assets/4aaa5df6-bc26-464f-8352-00a7e1cb235f" alt="ELB" width="150">
+| RDS    |  <img src="https://github.com/user-attachments/assets/6576e918-77ad-4357-ba5b-293da222d28f" alt="RDB" width="150">
+| AutoScaling    |  <img src="https://github.com/user-attachments/assets/6458fddc-6af5-4746-a7a7-1927301c9737" alt="AutoScaling" width="150">
+
 <br/>
 
 ## 5.4 Cooperation
