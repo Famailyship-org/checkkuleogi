@@ -57,9 +57,9 @@
     <th>JAVA</th><th>Spring Boot</th><th>Spring Security</th><th>JWT</th><th>Spring Batch</th><th>Python</th><th>Fast API</th>
   </tr>
   <tr>
-    <td align="center"><img src="https://github.com/user-attachments/assets/5df80afe-5c3d-47c1-9f6d-1549d1b2fc42" alt="JAVA" width="50"></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/4d0c279a-0dfe-4253-b79e-c615935f9aff" alt="Spring Boot" width="50"></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/f4744195-f1d0-44d9-b64c-0a027aaaf05a" alt="Spring Security" width="50"></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/5df80afe-5c3d-47c1-9f6d-1549d1b2fc42" alt="JAVA" width="100"></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/4d0c279a-0dfe-4253-b79e-c615935f9aff" alt="Spring Boot" width="100"></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/f4744195-f1d0-44d9-b64c-0a027aaaf05a" alt="Spring Security" width="100"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/d43d4e63-3d5c-4ba2-a323-a68c6a8924e1" alt="JWT" width="50"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/a88d9a9b-d01b-45c1-99ff-a4c431183dc4" alt="Spring Batch" width="50"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/4d097a53-ce0b-4d9c-8182-7eb7af9750d0" alt="Python" width="50"></td>
@@ -164,10 +164,13 @@ Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
 - **main**: 배포 가능한 상태의 코드를 유지합니다. 모든 배포는 이 브랜치에서 이루어집니다.
 - **develop/{feature/release/refactoring...}**: 팀원 각자의 개발 브랜치로, 모든 기능 개발은 이 브랜치에서 이루어집니다.
 
+
 <br/>
 
 ## 🗂️ 8. ERD  
 <img src="https://github.com/user-attachments/assets/2a1c29e2-384c-402d-9b65-c6142e5b062d" alt="ERD" width="1000">  
+
+
 
 <br/>
 
