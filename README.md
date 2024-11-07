@@ -106,32 +106,31 @@ $ docker compose up --build -d
 main
 └── java
     └── com
-        └── onepage
-            └── coupong
-                ├── chat
-                └── coupon
-                    ├── api
-                    ├── config
-                    ├── domain
-                    ├── dto
-                    ├── exception
-                    ├── repository
-                    └── service
+        └── Familiship
+            └── checkkuleogi
+                ├── batch
+                ├── config
+                └── domains
+                    ├── book
+                        ├── dto
+                            ├── request
+                            └── response
+                        ├── exception
+                        ├── implementation
+                            └── mapper
+                        ├── jpa
+                            └── repository
+                        ├── presentation
+                        └── service
+                    ├── child
+                    ├── recommend
+                    └── user
                 ├── global
-                ├── infrastructure
+                ├── security
+                    └──jwt
                 ├── leaderboard
                 └── user
-└── CoupongApplication
-resources
-test
-└── java
-    └── com
-        └── onepage
-            └── coupong
-                └── couponEventTest
-                    ├── CouponEventSchedulerTest.java
-                    ├── CouponEventServiceIntegrationTest
-                    └── CoupongApplicationTests
+└── CheckkuleogiApplication
 ```
 
 <br/>
