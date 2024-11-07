@@ -54,59 +54,53 @@ $ docker compose up --build -d
 
 <br/>
 
-
 # 5. Technology Stack (기술 스택)
-## 5.1 Backend
-|  |  |
-|-----------------|-----------------|
-| JAVA          |<img src="https://github.com/user-attachments/assets/5df80afe-5c3d-47c1-9f6d-1549d1b2fc42" alt="JAVA" width="200">| 
-| Spring Boot   |   <img src="https://github.com/user-attachments/assets/4d0c279a-0dfe-4253-b79e-c615935f9aff" alt="Spring Boot" width="200">|
-| Spring Security   |   <img src="https://github.com/user-attachments/assets/f4744195-f1d0-44d9-b64c-0a027aaaf05a" alt="Spring Security" width="200">|
-| JWT   |   <img src="https://github.com/user-attachments/assets/d43d4e63-3d5c-4ba2-a323-a68c6a8924e1" alt="JWT" width="200">|
-| Spring Batch   |   <img src="https://github.com/user-attachments/assets/a88d9a9b-d01b-45c1-99ff-a4c431183dc4" alt="Spring Batch" width="200">|
-| Python   |   <img src="https://github.com/user-attachments/assets/4d097a53-ce0b-4d9c-8182-7eb7af9750d0" alt="Python" width="200">|
-| Fast API  |   <img src="https://github.com/user-attachments/assets/bcf0c46b-80b8-4305-b6b3-8c58c20ddb7a" alt="Fast API" width="200">|
-<br/>
 
-## 5.2 Frotend
-|  |  |  |
+## 5.1 Backend
+| 기술          | 로고 |
+|-----------------|-----------------|
+| JAVA          | ![JAVA](https://github.com/user-attachments/assets/5df80afe-5c3d-47c1-9f6d-1549d1b2fc42) | 
+| Spring Boot   | ![Spring Boot](https://github.com/user-attachments/assets/4d0c279a-0dfe-4253-b79e-c615935f9aff) |
+| Spring Security | ![Spring Security](https://github.com/user-attachments/assets/f4744195-f1d0-44d9-b64c-0a027aaaf05a) |
+| JWT   | ![JWT](https://github.com/user-attachments/assets/d43d4e63-3d5c-4ba2-a323-a68c6a8924e1) |
+| Spring Batch   | ![Spring Batch](https://github.com/user-attachments/assets/a88d9a9b-d01b-45c1-99ff-a4c431183dc4) |
+| Python   | ![Python](https://github.com/user-attachments/assets/4d097a53-ce0b-4d9c-8182-7eb7af9750d0) |
+| Fast API  | ![Fast API](https://github.com/user-attachments/assets/bcf0c46b-80b8-4305-b6b3-8c58c20ddb7a) |
+
+## 5.2 Frontend
+| 기술          | 로고 | 버전 |
 |-----------------|-----------------|-----------------|
-| React    |  <img src="https://github.com/user-attachments/assets/e3b49dbb-981b-4804-acf9-012c854a2fd2" alt="React" width="100"> | latest    |
-| CSS3    |   <img src="https://github.com/user-attachments/assets/c531b03d-55a3-40bf-9195-9ff8c4688f13" alt="CSS3" width="100">| latest    |
-| Javascript    |  <img src="https://github.com/user-attachments/assets/4a7d7074-8c71-48b4-8652-7431477669d1" alt="Javascript" width="100"> | latest    |
-<br/>
+| React    | ![React](https://github.com/user-attachments/assets/e3b49dbb-981b-4804-acf9-012c854a2fd2) | latest |
+| CSS3     | ![CSS3](https://github.com/user-attachments/assets/c531b03d-55a3-40bf-9195-9ff8c4688f13) | latest |
+| JavaScript | ![JavaScript](https://github.com/user-attachments/assets/4a7d7074-8c71-48b4-8652-7431477669d1) | latest |
 
 ## 5.3 DBMS
-|  |  |  |
+| 기술          | 로고 | 버전 |
 |-----------------|-----------------|-----------------|
-| Redis    |  <img src="https://github.com/user-attachments/assets/5de8138b-f2c4-4f72-ac54-3266f6e9b257" alt="Redis" width="100">    | latest   |
-| MySQL    |  <img src="https://github.com/user-attachments/assets/19757339-cd0f-4388-8129-5476409dd88c" alt="Redis" width="100">    | latest   |
-<br/>
+| Redis    | ![Redis](https://github.com/user-attachments/assets/5de8138b-f2c4-4f72-ac54-3266f6e9b257) | latest |
+| MySQL    | ![MySQL](https://github.com/user-attachments/assets/19757339-cd0f-4388-8129-5476409dd88c) | latest |
 
-## 5.3 Infra
-|  |  |  
-|-----------------|-----------------| 
-| Docker    |  <img src="https://github.com/user-attachments/assets/14027b7d-6e68-4918-8a01-ac2ba9e9778a" alt="Docker" width="100">
-| K6    |  <img src="https://github.com/user-attachments/assets/d3e9ec42-1254-4593-a644-fc8fabb016ca" alt="K6" width="150">
-| AWS    |  <img src="https://github.com/user-attachments/assets/0ec812d8-6256-425a-bbf4-797b5a0c5c49" alt="AWS" width="100">
-| Elasticache   |  <img src="https://github.com/user-attachments/assets/5693f3b6-c0c9-4265-9afd-37b07e73f27e" alt="Elasticahce" width="150">
-| ECS    |  <img src="https://github.com/user-attachments/assets/34a918db-c371-4f26-92f6-bd9fa29822bf" alt="ECS" width="150">
-| ECR    |  <img src="https://github.com/user-attachments/assets/3fdfef19-4a99-47b2-a07c-39f4aa5427af" alt="ECR" width="150">
-| SQS    |  <img src="https://github.com/user-attachments/assets/5ad952cc-c28e-403f-ac76-4d7abeeff85e" alt="SQS" width="150">
-| ELB    |  <img src="https://github.com/user-attachments/assets/4aaa5df6-bc26-464f-8352-00a7e1cb235f" alt="ELB" width="150">
-| RDS    |  <img src="https://github.com/user-attachments/assets/6576e918-77ad-4357-ba5b-293da222d28f" alt="RDB" width="150">
-| AutoScaling    |  <img src="https://github.com/user-attachments/assets/6458fddc-6af5-4746-a7a7-1927301c9737" alt="AutoScaling" width="150">
-
-<br/>
-
-## 5.4 Cooperation
-|  |  |
+## 5.4 Infra
+| 기술          | 로고 |
 |-----------------|-----------------|
-| Git    |  <img src="https://github.com/user-attachments/assets/483abc38-ed4d-487c-b43a-3963b33430e6" alt="git" width="100">    |
-| Figma    |  <img src="https://github.com/user-attachments/assets/aa07f6bc-5034-4461-babf-82ada48f36b0" alt="Figma" width="100">    |
-| Notion    |  <img src="https://github.com/user-attachments/assets/34141eb9-deca-416a-a83f-ff9543cc2f9a" alt="Notion" width="100">    |
+| Docker    | ![Docker](https://github.com/user-attachments/assets/14027b7d-6e68-4918-8a01-ac2ba9e9778a) |
+| K6    | ![K6](https://github.com/user-attachments/assets/d3e9ec42-1254-4593-a644-fc8fabb016ca) |
+| AWS    | ![AWS](https://github.com/user-attachments/assets/0ec812d8-6256-425a-bbf4-797b5a0c5c49) |
+| Elasticache   | ![Elasticache](https://github.com/user-attachments/assets/5693f3b6-c0c9-4265-9afd-37b07e73f27e) |
+| ECS    | ![ECS](https://github.com/user-attachments/assets/34a918db-c371-4f26-92f6-bd9fa29822bf) |
+| ECR    | ![ECR](https://github.com/user-attachments/assets/3fdfef19-4a99-47b2-a07c-39f4aa5427af) |
+| SQS    | ![SQS](https://github.com/user-attachments/assets/5ad952cc-c28e-403f-ac76-4d7abeeff85e) |
+| ELB    | ![ELB](https://github.com/user-attachments/assets/4aaa5df6-bc26-464f-8352-00a7e1cb235f) |
+| RDS    | ![RDS](https://github.com/user-attachments/assets/6576e918-77ad-4357-ba5b-293da222d28f) |
+| AutoScaling    | ![AutoScaling](https://github.com/user-attachments/assets/6458fddc-6af5-4746-a7a7-1927301c9737) |
 
-<br/>
+## 5.5 Cooperation
+| 기술          | 로고 |
+|-----------------|-----------------|
+| Git    | ![Git](https://github.com/user-attachments/assets/483abc38-ed4d-487c-b43a-3963b33430e6) |
+| Figma    | ![Figma](https://github.com/user-attachments/assets/aa07f6bc-5034-4461-babf-82ada48f36b0) |
+| Notion   | ![Notion](https://github.com/user-attachments/assets/34141eb9-deca-416a-a83f-ff9543cc2f9a) |
+
 
 # 6. Project Structure (프로젝트 구조)
 ```plaintext
