@@ -61,9 +61,9 @@
     <td align="center"><img src="https://github.com/user-attachments/assets/4d0c279a-0dfe-4253-b79e-c615935f9aff" alt="Spring Boot" width="100"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/f4744195-f1d0-44d9-b64c-0a027aaaf05a" alt="Spring Security" width="100"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/d43d4e63-3d5c-4ba2-a323-a68c6a8924e1" alt="JWT" width="50"></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/a88d9a9b-d01b-45c1-99ff-a4c431183dc4" alt="Spring Batch" width="80"></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/a88d9a9b-d01b-45c1-99ff-a4c431183dc4" alt="Spring Batch" width="100"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/4d097a53-ce0b-4d9c-8182-7eb7af9750d0" alt="Python" width="50"></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/bcf0c46b-80b8-4305-b6b3-8c58c20ddb7a" alt="Fast API" width="80"></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/bcf0c46b-80b8-4305-b6b3-8c58c20ddb7a" alt="Fast API" width="100"></td>
   </tr>
 </table>
 
@@ -124,6 +124,7 @@
 <br/>
 
 ## 📂 6. Project Structure (프로젝트 구조)
+<br/>
 ```plaintext
 main
 └── java
@@ -157,6 +158,7 @@ main
 
 <br/>
 ## 📈 7. Development Workflow (개발 워크플로우)  
+<br/>
 
 ### 브랜치 전략 (Branch Strategy)  
 Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
@@ -174,6 +176,7 @@ Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
 <br/>
 
 ## 🏗️ 9. 시스템 아키텍처  
+<br/>
 
 ### 9.1 도서 MBTI 추출  
 <img src="https://github.com/user-attachments/assets/afc8fcb5-ed52-4918-9d97-c0a60113c653" alt="MBTI추출" width="600">
