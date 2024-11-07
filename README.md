@@ -95,7 +95,7 @@
     <td align="center"><img src="https://github.com/user-attachments/assets/14027b7d-6e68-4918-8a01-ac2ba9e9778a" alt="Docker" width="50"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/d3e9ec42-1254-4593-a644-fc8fabb016ca" alt="K6" width="50"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/0ec812d8-6256-425a-bbf4-797b5a0c5c49" alt="AWS" width="50"></td>
-    <td align="center"><img src="https://github.com/user-attachments/assets/5693f3b6-c0c9-4265-9afd-37b07e73f27e" alt="Elasticache" width="50"></td>
+    <td align="center"><img src="https://github.com/user-attachments/assets/5693f3b6-c0c9-4265-9afd-37b07e73f27e" alt="Elasticache" width="100"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/34a918db-c371-4f26-92f6-bd9fa29822bf" alt="ECS" width="50"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/3fdfef19-4a99-47b2-a07c-39f4aa5427af" alt="ECR" width="50"></td>
     <td align="center"><img src="https://github.com/user-attachments/assets/5ad952cc-c28e-403f-ac76-4d7abeeff85e" alt="SQS" width="50"></td>
@@ -176,3 +176,6 @@ Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
 
 ### 9.4 유저 MBTI 변환  
 <img src="https://github.com/user-attachments/assets/9eef0afd-6da2-4a73-9353-bf62e0248906" alt="MBTI변환" width="600">
+
+### 9.4 도서 메타 데이터 캐싱 
+<img src="https://github.com/user-attachments/assets/a4c14ddc-68e4-4fbe-bceb-184709fc41cc" alt="MBTI변환" width="600">
