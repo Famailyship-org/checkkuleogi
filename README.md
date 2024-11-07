@@ -159,7 +159,7 @@ main
 <br/>
 
 # 8. ERD
-<img src="" alt="React" width="500"> <br/><br/>
+<img src="https://github.com/user-attachments/assets/2a1c29e2-384c-402d-9b65-c6142e5b062d" alt="ERD" width="720"> <br/><br/>
 
 # 9. 시스템 아키텍처
 <img src="" alt="React" width="500"> <br/><br/>
