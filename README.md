@@ -1,72 +1,60 @@
 -- update 중~~ --
+<div align="center">
 
-# 0. Getting Started (시작하기)
-```bash
-$ ./gradlew clean build -x test 
-$ docker compose up --build -d
-```
----->      <----
+# 📚 책꾸러기 (Checkkuleogi)
 
-<br/>
-<br/>
+자녀 맞춤 도서 추천 시스템  
+가장 좋은 책을 아이에게 맞춰 추천해주는 스마트한 시스템입니다.
 
-# 1. Project Overview (프로젝트 개요)
-- 프로젝트 이름: 책꾸러기
-- 프로젝트 설명: 자녀 맞춤 도서 추천 시스쳄
+</div>
+
+---
 
 <br/>
+
+## 🧑‍💻 1. Project Overview (프로젝트 개요)
+
+- **프로젝트 이름**: 책꾸러기
+- **프로젝트 설명**: 자녀 맞춤 도서 추천 시스템
+
 <br/>
 
-# 2. Team Members (팀원 및 팀 소개)
+## 👥 2. Team Members (팀원 및 팀 소개)
+
 | 진명인 | 권예진 | 김태연 | 박정웅 | 양석진 |
 |:------:|:------:|:------:|:------:|:------:|
-| <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="150"> | <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="150"> | <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="150"> | <img src="https://avatars.githubusercontent.com/daase"  alt="박정웅" width="150"> | <img src="https://avatars.githubusercontent.com/harvartz"  alt="양석진" width="150"> 
+| <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="100"> | <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="100"> | <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="100"> | <img src="https://avatars.githubusercontent.com/daase" alt="박정웅" width="100"> | <img src="https://avatars.githubusercontent.com/harvartz" alt="양석진" width="100"> |
 | BE | BE | BE | BE | BE |
 | [GitHub](https://github.com/myeonginjin) | [GitHub](https://github.com/YaeJinKwon) | [GitHub](https://github.com/taeyeon0319) | [GitHub](https://github.com/daase) | [GitHub](https://github.com/harvartz) |
 
 <br/>
-<br/>
 
-# 3. Key Features (주요 기능)
+## ✨ 3. Key Features (주요 기능)
 
-- **개인 맞춤형 추천 시스템**:
-  - 매일 밤 자정, 이벤트 목록이 초기화됩니다.  `스케줄러 동적 할당`
-  - 이벤트는 카테고리별로 동일한 날짜, 동일한 시간대에 여러 이벤트가 진행될 수 있습니다.  `멀티 스케줄러`
- 
-- **선착순 응모 시스템**:
-  - 
- 
-- **도서 성향 추출 및 등록**:
-  - 
-- 
-<br/>
-<br/>
-
-# 4. Tasks & Responsibilities (작업 및 역할 분담)
-|  |  |  |
-|-----------------|-----------------|-----------------|
-| 진명인    |  <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="100"> | <ul><li>팀 리딩</li><li>프로젝트 기획 및 설계</li></ul>     |
-| 권예진  |  <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="100">| <ul><li>개인 맞춤형 추천 시스템</li><li>스프링 배치를 통한 진단 데이터 물리적 삭제</li></ul> |
-| 김태연  |  <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="100">| <ul><li>도서 성향 추출 시스템</li><li>피그마 및 프론트엔드</li></ul> |
-| 박정웅    |  <img src="https://avatars.githubusercontent.com/daase" alt="박정웅" width="100">    | <ul><li>인증/인가 시스템</li><li>대규모 아키텍쳐 설계 및 세팅</li></ul>    |
-| 양석진  |  <img src="https://avatars.githubusercontent.com/harvartz" alt="양석진" width="100">    |<ul><li>선착순 응모 시스템 </li><li>대규모 아키텍쳐 설계 및 세팅</li></ul>  |
-
+- **개인 맞춤형 추천 시스템**: 매일 밤 자정에 이벤트 목록 초기화, 카테고리별 다중 이벤트 지원 (`스케줄러 동적 할당`, `멀티 스케줄러`)
+- **선착순 응모 시스템**  
+- **도서 성향 추출 및 등록**
 
 <br/>
 
+## 🔨 4. Tasks & Responsibilities (작업 및 역할 분담)
 
-# 5. Technology Stack (기술 스택)
+| 팀원  | 사진 | 역할 |
+|:------:|:------:|-----------------|
+| 진명인 |  <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="100"> | <ul><li>팀 리딩</li><li>프로젝트 기획 및 설계</li></ul> |
+| 권예진 |  <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="100"> | <ul><li>개인 맞춤형 추천 시스템</li><li>스프링 배치를 통한 진단 데이터 물리적 삭제</li></ul> |
+| 김태연 |  <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="100"> | <ul><li>도서 성향 추출 시스템</li><li>피그마 및 프론트엔드</li></ul> |
+| 박정웅 |  <img src="https://avatars.githubusercontent.com/daase" alt="박정웅" width="100"> | <ul><li>인증/인가 시스템</li><li>대규모 아키텍처 설계 및 세팅</li></ul> |
+| 양석진 |  <img src="https://avatars.githubusercontent.com/harvartz" alt="양석진" width="100"> | <ul><li>선착순 응모 시스템</li><li>대규모 아키텍처 설계 및 세팅</li></ul> |
 
-## 5.1 Backend
+<br/>
+
+## 💻 5. Technology Stack (기술 스택)
+
+### 5.1 Backend
 <table>
   <tr>
-    <th>JAVA</th>
-    <th>Spring Boot</th>
-    <th>Spring Security</th>
-    <th>JWT</th>
-    <th>Spring Batch</th>
-    <th>Python</th>
-    <th>Fast API</th>
+    <th>JAVA</th><th>Spring Boot</th><th>Spring Security</th><th>JWT</th><th>Spring Batch</th><th>Python</th><th>Fast API</th>
   </tr>
   <tr>
     <td align="center"><img src="https://github.com/user-attachments/assets/5df80afe-5c3d-47c1-9f6d-1549d1b2fc42" alt="JAVA" width="50"></td>
@@ -79,12 +67,10 @@ $ docker compose up --build -d
   </tr>
 </table>
 
-## 5.2 Frontend
+### 5.2 Frontend
 <table>
   <tr>
-    <th>React</th>
-    <th>CSS3</th>
-    <th>JavaScript</th>
+    <th>React</th><th>CSS3</th><th>JavaScript</th>
   </tr>
   <tr>
     <td align="center"><img src="https://github.com/user-attachments/assets/e3b49dbb-981b-4804-acf9-012c854a2fd2" alt="React" width="50"></td>
@@ -93,11 +79,10 @@ $ docker compose up --build -d
   </tr>
 </table>
 
-## 5.3 DBMS
+### 5.3 DBMS
 <table>
   <tr>
-    <th>Redis</th>
-    <th>MySQL</th>
+    <th>Redis</th><th>MySQL</th>
   </tr>
   <tr>
     <td align="center"><img src="https://github.com/user-attachments/assets/5de8138b-f2c4-4f72-ac54-3266f6e9b257" alt="Redis" width="50"></td>
@@ -105,19 +90,10 @@ $ docker compose up --build -d
   </tr>
 </table>
 
-## 5.4 Infra
+### 5.4 Infra
 <table>
   <tr>
-    <th>Docker</th>
-    <th>K6</th>
-    <th>AWS</th>
-    <th>Elasticache</th>
-    <th>ECS</th>
-    <th>ECR</th>
-    <th>SQS</th>
-    <th>ELB</th>
-    <th>RDS</th>
-    <th>AutoScaling</th>
+    <th>Docker</th><th>K6</th><th>AWS</th><th>Elasticache</th><th>ECS</th><th>ECR</th><th>SQS</th><th>ELB</th><th>RDS</th><th>AutoScaling</th>
   </tr>
   <tr>
     <td align="center"><img src="https://github.com/user-attachments/assets/14027b7d-6e68-4918-8a01-ac2ba9e9778a" alt="Docker" width="50"></td>
@@ -133,12 +109,10 @@ $ docker compose up --build -d
   </tr>
 </table>
 
-## 5.5 Cooperation
+### 5.5 Cooperation
 <table>
   <tr>
-    <th>Git</th>
-    <th>Figma</th>
-    <th>Notion</th>
+    <th>Git</th><th>Figma</th><th>Notion</th>
   </tr>
   <tr>
     <td align="center"><img src="https://github.com/user-attachments/assets/483abc38-ed4d-487c-b43a-3963b33430e6" alt="Git" width="50"></td>
@@ -147,9 +121,9 @@ $ docker compose up --build -d
   </tr>
 </table>
 
+<br/>
 
-
-# 6. Project Structure (프로젝트 구조)
+## 📂 6. Project Structure (프로젝트 구조)
 ```plaintext
 main
 └── java
@@ -179,47 +153,29 @@ main
                 ├── leaderboard
                 └── user
 └── CheckkuleogiApplication
-```
+<br/>
+📈 7. Development Workflow (개발 워크플로우)  
+**브랜치 전략 (Branch Strategy)**  
+Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
+
+- **main**: 배포 가능한 상태의 코드를 유지합니다. 모든 배포는 이 브랜치에서 이루어집니다.
+- **develop/{feature/release/refactoring...}**: 팀원 각자의 개발 브랜치로, 모든 기능 개발은 이 브랜치에서 이루어집니다.
 
 <br/>
-<br/>
-
-# 7. Development Workflow (개발 워크플로우)
-## 브랜치 전략 (Branch Strategy)
-우리의 브랜치 전략은 Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
-
-- main
-  - 배포 가능한 상태의 코드를 유지합니다.
-  - 모든 배포는 이 브랜치에서 이루어집니다.
-  
-- develop/{feature/release/refactoring...}
-  - 팀원 각자의 개발 브랜치입니다.
-  - 모든 기능 개발은 이 브랜치에서 이루어집니다.
+🗂️ 8. ERD  
+<img src="https://github.com/user-attachments/assets/2a1c29e2-384c-402d-9b65-c6142e5b062d" alt="ERD" width="1000">  
 
 <br/>
-<br/>
+🏗️ 9. 시스템 아키텍처  
 
-# 8. ERD
-<img src="https://github.com/user-attachments/assets/2a1c29e2-384c-402d-9b65-c6142e5b062d" alt="ERD" width="1020"> <br/><br/>
+**9.1 도서 MBTI 추출**  
+<img src="https://github.com/user-attachments/assets/afc8fcb5-ed52-4918-9d97-c0a60113c653" alt="MBTI추출" width="600">
 
-# 9. 시스템 아키텍처
+**9.2 추천 시스템**  
+<img src="https://github.com/user-attachments/assets/48cbe44d-2ef5-4e95-b403-7eaa39a2106a" alt="추천" width="600">
 
-## 9.1 도서 MBTI 추출
-<img src="https://github.com/user-attachments/assets/afc8fcb5-ed52-4918-9d97-c0a60113c653" alt="MBTI추출" width="500"> <br/><br/>
+**9.3 선착순 시스템**  
+<img src="https://github.com/user-attachments/assets/7f39b82f-cf66-4b57-8ef7-2d5fbfb1c42a" alt="선착순" width="600">
 
-## 9.2 추천 시스템 
-<img src="https://github.com/user-attachments/assets/48cbe44d-2ef5-4e95-b403-7eaa39a2106a" alt="추천" width="500"> <br/><br/>
-
-## 9.3 선착순 시스템
-<img src="https://github.com/user-attachments/assets/7f39b82f-cf66-4b57-8ef7-2d5fbfb1c42a" alt="선착순" width="500"> <br/><br/>
-
-## 9.4 유저 MBTI 변환
-<img src="https://github.com/user-attachments/assets/9eef0afd-6da2-4a73-9353-bf62e0248906" alt="MBTI변환" width="500"> <br/><br/>
-
-# 10. 인터페이스 설계
-<img src="" alt="React" width="300">
-<img src="" alt="React" width="300">
-<img src="" alt="React" width="500"> <br/><br/>
-
-
-
+**9.4 유저 MBTI 변환**  
+<img src="https://github.com/user-attachments/assets/9eef0afd-6da2-4a73-9353-bf62e0248906" alt="MBTI변환" width="600">
