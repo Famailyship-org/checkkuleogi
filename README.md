@@ -159,10 +159,21 @@ main
 <br/>
 
 # 8. ERD
-<img src="https://github.com/user-attachments/assets/2a1c29e2-384c-402d-9b65-c6142e5b062d" alt="ERD" width="720"> <br/><br/>
+<img src="https://github.com/user-attachments/assets/2a1c29e2-384c-402d-9b65-c6142e5b062d" alt="ERD" width="1020"> <br/><br/>
 
 # 9. 시스템 아키텍처
-<img src="" alt="React" width="500"> <br/><br/>
+
+## 9.1 도서 MBTI 추출
+<img src="https://github.com/user-attachments/assets/afc8fcb5-ed52-4918-9d97-c0a60113c653" alt="MBTI추출" width="500"> <br/><br/>
+
+## 9.2 추천 시스템 
+<img src="https://github.com/user-attachments/assets/48cbe44d-2ef5-4e95-b403-7eaa39a2106a" alt="추천" width="500"> <br/><br/>
+
+## 9.3 선착순 시스템
+<img src="https://github.com/user-attachments/assets/7f39b82f-cf66-4b57-8ef7-2d5fbfb1c42a" alt="선착순" width="500"> <br/><br/>
+
+## 9.4 유저 MBTI 변환
+<img src="https://github.com/user-attachments/assets/9eef0afd-6da2-4a73-9353-bf62e0248906" alt="MBTI변환" width="500"> <br/><br/>
 
 # 10. 인터페이스 설계
 <img src="" alt="React" width="300">
