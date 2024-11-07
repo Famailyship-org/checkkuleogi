@@ -1,12 +1,12 @@
 package com.Familyship.checkkuleogi.domains.child.implementation;
 
-import com.Familyship.checkkuleogi.domains.child.domain.Child;
-import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildRepository;
+import com.Familyship.checkkuleogi.domains.child.jpa.Child;
+import com.Familyship.checkkuleogi.domains.child.jpa.repository.ChildRepository;
 import com.Familyship.checkkuleogi.domains.child.dto.request.CreateChildRequestDTO;
 import com.Familyship.checkkuleogi.domains.child.dto.response.ChildResponse;
 import com.Familyship.checkkuleogi.domains.child.exception.ChildException;
 import com.Familyship.checkkuleogi.domains.child.exception.ChildExceptionType;
-import com.Familyship.checkkuleogi.domains.user.domain.SiteUser;
+import com.Familyship.checkkuleogi.domains.user.jpa.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

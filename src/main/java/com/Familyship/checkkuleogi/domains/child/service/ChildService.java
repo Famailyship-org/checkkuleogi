@@ -3,21 +3,51 @@ package com.Familyship.checkkuleogi.domains.child.service;
 import com.Familyship.checkkuleogi.domains.child.dto.request.*;
 import com.Familyship.checkkuleogi.domains.child.dto.response.*;
 
-public interface ChildService {
+import com.Familyship.checkkuleogi.domains.child.presentation.ChildUseCase;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
-    CreateChildResponseMbtiDTO createMBTI(CreateChildRequestMbtiDTO childCreateRequestDTO);
+@Service
+@RequiredArgsConstructor
+public class ChildService implements ChildUseCase {
 
-    CreateChildResponseDTO createChild(CreateChildRequestDTO createChildRequestDTO, String token);
+    @Override
+    public CreateChildResponseMbtiDTO createMBTI(CreateChildRequestMbtiDTO childCreateRequestDTO) {
+        return null;
+    }
 
-    ReadChildResponseDTO readMBTI(ReadChildRequestDTO readChildRequestDTO);
+    @Override
+    public CreateChildResponseDTO createChild(CreateChildRequestDTO createChildRequestDTO, String token) {
+        return null;
+    }
 
-    LoginChildRequestDTO loginChild(String token);
+    @Override
+    public ReadChildResponseDTO readMBTI(ReadChildRequestDTO readChildRequestDTO) {
+        return null;
+    }
 
-    void deleteMBTI(DeleteChildMBTIRequestDTO deleteChildMBTIRequestDTO);
+    @Override
+    public LoginChildRequestDTO loginChild(String token) {
+        return null;
+    }
 
-    UpdateChildMBTIResponseDTO updateMBTI(UpdateChildMBTIRequestDTO updateChildMBTIRequestDTO);
+    @Override
+    public void deleteMBTI(DeleteChildMBTIRequestDTO deleteChildMBTIRequestDTO) {
 
-    ChildResponse getChildById(Long childIdx);
+    }
 
-    GetChildMbtiLogsResponseDTO getMbtiLogs(Long childIdx);
+    @Override
+    public UpdateChildMBTIResponseDTO updateMBTI(UpdateChildMBTIRequestDTO updateChildMBTIRequestDTO) {
+        return null;
+    }
+
+    @Override
+    public ChildResponse getChildById(Long childIdx) {
+        return null;
+    }
+
+    @Override
+    public GetChildMbtiLogsResponseDTO getMbtiLogs(Long childIdx) {
+        return null;
+    }
 }

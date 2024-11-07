@@ -5,20 +5,20 @@ import com.Familyship.checkkuleogi.domains.user.dto.request.CreateUserRequestDTO
 import com.Familyship.checkkuleogi.domains.user.dto.request.LoginUserRequestDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.CreateUserResponseDTO;
 import com.Familyship.checkkuleogi.domains.user.dto.response.LoginUserResponseDTO;
-import com.Familyship.checkkuleogi.domains.user.service.UserServiceImpl;
+import com.Familyship.checkkuleogi.domains.user.service.UserService;
 
-import com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity;
+import com.Familyship.checkkuleogi.global.presentation.CommonResponseEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import static com.Familyship.checkkuleogi.global.domain.response.CommonResponseEntity.success;
+import static com.Familyship.checkkuleogi.global.presentation.CommonResponseEntity.success;
 
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     @PostMapping("/join")
     public CommonResponseEntity<CreateUserResponseDTO> join(@RequestBody CreateUserRequestDTO user) {

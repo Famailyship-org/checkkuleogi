@@ -3,7 +3,7 @@ package com.Familyship.checkkuleogi.domains.book.implementation;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookMBTIRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.request.ChatGPTRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.response.ChatGPTResponse;
-import com.Familyship.checkkuleogi.domains.book.service.MBTIKeywords;
+import com.Familyship.checkkuleogi.domains.book.implementation.mapper.MBTIKeywordMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -68,16 +68,16 @@ public class GPTManager {
 
         switch (mbti) {
             case "EI":
-                prompt += "(1) : " + MBTIKeywords.E_KEYWORDS + "\n(2) : " + MBTIKeywords.I_KEYWORDS + "\n";
+                prompt += "(1) : " + MBTIKeywordMapper.E_KEYWORDS + "\n(2) : " + MBTIKeywordMapper.I_KEYWORDS + "\n";
                 break;
             case "SN":
-                prompt += "(1) : " + MBTIKeywords.S_KEYWORDS + "\n(2) : " + MBTIKeywords.N_KEYWORDS + "\n";
+                prompt += "(1) : " + MBTIKeywordMapper.S_KEYWORDS + "\n(2) : " + MBTIKeywordMapper.N_KEYWORDS + "\n";
                 break;
             case "TF":
-                prompt += "(1) : " + MBTIKeywords.T_KEYWORDS + "\n(2) : " + MBTIKeywords.F_KEYWORDS + "\n";
+                prompt += "(1) : " + MBTIKeywordMapper.T_KEYWORDS + "\n(2) : " + MBTIKeywordMapper.F_KEYWORDS + "\n";
                 break;
             case "JP":
-                prompt += "(1) : " + MBTIKeywords.J_KEYWORDS + "\n(2) : " + MBTIKeywords.P_KEYWORDS + "\n";
+                prompt += "(1) : " + MBTIKeywordMapper.J_KEYWORDS + "\n(2) : " + MBTIKeywordMapper.P_KEYWORDS + "\n";
                 break;
             default:
                 prompt = "";

@@ -1,8 +1,6 @@
 package com.Familyship.checkkuleogi.domains.child.implementation.mapper;
 
-import com.Familyship.checkkuleogi.domains.child.domain.repository.ChildMBTILogRepository;
 import com.Familyship.checkkuleogi.domains.child.dto.response.GetChildMbtiLogsResponseDTO;
-import com.Familyship.checkkuleogi.global.domain.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Component;

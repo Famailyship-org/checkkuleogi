@@ -1,13 +1,11 @@
 package com.Familyship.checkkuleogi.domains.book.implementation;
 
-import com.Familyship.checkkuleogi.domains.book.domain.Book;
-import com.Familyship.checkkuleogi.domains.book.domain.BookMBTI;
-import com.Familyship.checkkuleogi.domains.book.domain.repository.BookRepository;
+import com.Familyship.checkkuleogi.domains.book.jpa.Book;
+import com.Familyship.checkkuleogi.domains.book.jpa.BookMBTI;
+import com.Familyship.checkkuleogi.domains.book.jpa.repository.BookRepository;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookMBTIRequest;
 import com.Familyship.checkkuleogi.domains.book.dto.request.BookUpdateRequest;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
