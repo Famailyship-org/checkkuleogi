@@ -169,11 +169,8 @@ Git Flow를 기반으로 하며, 다음과 같은 브랜치를 사용합니다.
 
 ## 🗂️ 8. ERD  
 <img src="https://github.com/user-attachments/assets/2a1c29e2-384c-402d-9b65-c6142e5b062d" alt="ERD" width="1000">  
-
-<br/>
 <br/>
 ## 🏗️ 9. 시스템 아키텍처  
-<br/>
 ### 9.1 도서 MBTI 추출  
 <img src="https://github.com/user-attachments/assets/afc8fcb5-ed52-4918-9d97-c0a60113c653" alt="MBTI추출" width="600">
 
