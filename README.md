@@ -125,28 +125,7 @@ main
 └── java
     └── com
         └── Familiship
-            └── checkkuleogi
-                ├── batch
-                ├── config
-                └── domains
-                    ├── book
-                        ├── dto
-                            ├── request
-                            └── response
-                        ├── exception
-                        ├── implementation
-                            └── mapper
-                        ├── jpa
-                            └── repository
-                        ├── presentation
-                        └── service
-                    ├── child
-                    ├── recommend
-                    └── user
-                ├── global
-                ├── security
-                    └──jwt
-                ├── leaderboard
+.......
                 └── user
 └── CheckkuleogiApplication
 ```
