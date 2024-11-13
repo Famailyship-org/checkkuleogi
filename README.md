@@ -37,7 +37,7 @@
 
 | 팀원  | 사진 | 역할 |
 |:------:|:------:|-----------------|
-| 진명인 |  <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="100"> | <ul><li>개발 리드</li><li>시스템 아키텍처 설계</li><li>개인 맞춤형 추천 시스템</li></ul> |
+| 진명인 |  <img src="https://avatars.githubusercontent.com/myeonginjin" alt="진명인" width="100"> | <ul><li>시스템 아키텍처 설계</li><li>캐시 서버 구축</li><li>개인 맞춤형 추천 시스템</li></ul> |
 | 권예진 |  <img src="https://avatars.githubusercontent.com/YaeJinKwon" alt="권예진" width="100"> | <ul><li>개인 맞춤형 추천 시스템</li><li>배치 작업 관련 시스템</li></ul> |
 | 김태연 |  <img src="https://avatars.githubusercontent.com/taeyeon0319" alt="김태연" width="100"> | <ul><li>도서 성향 추출 시스템</li><li>피그마 및 프론트엔드</li></ul> |
 | 박정웅 |  <img src="https://avatars.githubusercontent.com/daase" alt="박정웅" width="100"> | <ul><li>인증/인가 시스템</li><li>인프라 구축</li></ul> |
