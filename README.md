@@ -27,6 +27,7 @@
 
 ## ✨ 3. Key Features (주요 기능)
 
+- **인증/인가 시스템**
 - **개인 맞춤형 추천 시스템**
 - **선착순 응모 시스템**  
 - **도서 성향 추출 및 등록**
@@ -124,10 +125,40 @@
 main
 └── java
     └── com
-        └── Familiship
-.......
-                └── user
-└── CheckkuleogiApplication
+        └── Familyship
+            └── checkkuleogi
+                ├── batch
+                ├── config
+                ├── domains
+                │   └── book
+                │       ├── dto
+                │       ├── exception
+                │       └── implementation
+                │           ├── mapper
+                │           │   ├── BookDtoMapper
+                │           │   ├── MBTIKeywordMapper
+                │           │   ├── BookAdminManager
+                │           │   ├── BookCacheManager
+                │           │   └── BookManager
+                │           └── jpa
+                │               ├── repository
+                │               │   ├── BookLikeRepository
+                │               │   └── BookRepository
+                │               ├── Book
+                │               ├── BookLike
+                │               └── BookMBTI
+                │           └── presentation
+                │               ├── enums
+                │               ├── BookController
+                │               └── BookUseCase
+                │           └── service
+                │               └── BookService
+                ├── child
+                ├── recommend
+                ├── user
+                ├── global
+                ├── security
+                └── CheckkuleogiApplication
 ```
 
 ## 📈 7. Development Workflow (개발 워크플로우)  
