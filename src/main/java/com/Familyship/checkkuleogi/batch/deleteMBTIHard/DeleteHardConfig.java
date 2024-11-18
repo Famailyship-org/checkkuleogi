@@ -1,7 +1,7 @@
 package com.Familyship.checkkuleogi.batch.deleteMBTIHard;
 
-import com.Familyship.checkkuleogi.domains.child.jpa.ChildMBTILog;
-import com.Familyship.checkkuleogi.domains.child.jpa.repository.ChildMBTILogRepository;
+import com.Familyship.checkkuleogi.child.jpa.ChildMBTILog;
+import com.Familyship.checkkuleogi.child.jpa.repository.ChildMBTILogRepository;
 import jakarta.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

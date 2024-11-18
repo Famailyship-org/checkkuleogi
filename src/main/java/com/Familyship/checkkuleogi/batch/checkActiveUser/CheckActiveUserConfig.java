@@ -1,8 +1,8 @@
 package com.Familyship.checkkuleogi.batch.checkActiveUser;
 
-import com.Familyship.checkkuleogi.domains.book.implementation.BookCacheManager;
-import com.Familyship.checkkuleogi.domains.child.jpa.Child;
-import com.Familyship.checkkuleogi.domains.child.jpa.repository.ChildRepository;
+import com.Familyship.checkkuleogi.book.implementation.BookCacheManager;
+import com.Familyship.checkkuleogi.child.jpa.Child;
+import com.Familyship.checkkuleogi.child.jpa.repository.ChildRepository;
 import jakarta.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
