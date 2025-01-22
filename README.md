@@ -137,9 +137,9 @@ main
                 │           ├── mapper
                 │           │   ├── BookDtoMapper
                 │           │   ├── MBTIKeywordMapper
-                │           │   ├── BookAdminManager
-                │           │   ├── BookCacheManager
-                │           │   └── BookManager
+                │           │── BookAdminManager
+                │           ├── BookCacheManager
+                │           │── BookManager
                 │           └── jpa
                 │               ├── repository
                 │               │   ├── BookLikeRepository
